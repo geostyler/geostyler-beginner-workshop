@@ -1,0 +1,30 @@
+{
+  "name": "geostyler-gitbook",
+  "version": "1.0.0",
+  "description": "Workshop on how to integrate GeoStyler in your own application",
+  "main": "index.js",
+  "dependencies": {
+    "gitbook-cli": "^2.3.2",
+    "gitbook-plugin-advanced-emoji": "^0.1.9",
+    "gitbook-plugin-expandable-chapters": "^0.2.0",
+    "gitbook-plugin-image-captions": "^2.0.0",
+    "gitbook-plugin-richquotes": "0.0.9",
+    "gitbook-plugin-sectionx": "^2.1.0",
+    "svgexport": "0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "mkdir -p ./_book && npm run doc:serve",
+    "clean": "rm -rf _book build",
+    "doc:help": "gitbook help",
+    "doc:serve": "gitbook serve ./",
+    "doc:build": "gitbook build ./ build/geostyler-ws",
+    "doc:epub": "gitbook epub ./ build/geostyler-ws.epub",
+    "doc:pdf": "gitbook pdf ./ build/geostyler-ws.pdf",
+    "postinstall": "gitbook install ./",
+    "build": "npm run clean && npm run doc:build && npm run doc:pdf && npm run doc:epub && cd build/geostyler-ws",
+    "archive": "npm run build && cd build && zip -r geostyler-ws.zip geostyler-ws geostyler-ws*.pdf geostyler-ws*.epub"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
