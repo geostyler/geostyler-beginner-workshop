@@ -20,7 +20,7 @@ Die fertige Anwendung wird folgendermaßen aussehen:
 In diesem Workshop werden wir die drei Kernelemente des GeoStylers kennen lernen. Dabei wird keinerlei Vorwissen zum GeoStyler benötigt.
 
 - [Style Parser](./style-parser/README.md) - Übersetzungseinheiten, die die Benutzung (fast) jeden Stilformats erlauben
-- [UI Komponenten](./edit-ui/README.md) - grafische Komponenten zum Editieren von Stilen
+- [UI Komponenten](./edit-ui/README.md) - Grafische Komponenten zum Editieren von Stilen
 - [Data Parser](./data-parser/README.md) - Übersetzungseinheiten, die das Einbinden von Daten erlauben
 
 Jeder Abschnitt baut auf den vorherigen Abschnitten auf. Dadurch empfiehlt es sich, den Workshop beim ersten Mal von
