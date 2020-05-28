@@ -31,7 +31,7 @@ vorne nach hinten durchzuarbeiten.
 Die folgenden Anweisungen und Übungen setzen voraus, dass bestimmte Anforderungen an euren Computer
 erfüllt sind. Bitte stellt sicher, dass folgende Programme installiert sind:
 
-- Einen geeigneten Text Editor, wie z.B.[Atom](https://atom.io/).
+- Einen geeigneten Text Editor, wie z.B. [Atom](https://atom.io/).
 - [NodeJS](https://nodejs.org/en/) in Version 12.
 
 ## Autoren
