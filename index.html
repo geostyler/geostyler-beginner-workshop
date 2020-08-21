@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>GeoStyler Beginner Workshop | Workshop on how to use GeoStyler from scratch. No prior knowledge needed.</title>
+<meta name="generator" content="Jekyll v3.8.7" />
+<meta property="og:title" content="GeoStyler Beginner Workshop" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Workshop on how to use GeoStyler from scratch. No prior knowledge needed." />
+<meta property="og:description" content="Workshop on how to use GeoStyler from scratch. No prior knowledge needed." />
+<link rel="canonical" href="/" />
+<meta property="og:url" content="/" />
+<meta property="og:site_name" content="GeoStyler Beginner Workshop" />
+<script type="application/ld+json">
+{"headline":"GeoStyler Beginner Workshop","@type":"WebSite","url":"/","name":"GeoStyler Beginner Workshop","description":"Workshop on how to use GeoStyler from scratch. No prior knowledge needed.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="GeoStyler Beginner Workshop" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">GeoStyler Beginner Workshop</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+<p><img src="images/geo-styler-logo.jpg" alt="geostyler-logo" /></p>
+
+<h1 id="geostyler-beginner-workshop">GeoStyler Beginner Workshop</h1>
+
+<p>Herzlich Willkommen beim <strong>GeoStyler Beginner Workshop</strong>. Dieser Workshop soll einen einführenden
+Überblick über den GeoStyler als ein webbasiertes Werkzeug zur interaktiven Erstellung von kartographischen Style-Vorschriften für Geodaten geben.</p>
+
+<p>In diesem Workshop werden wir eine einfache Anwendung schreiben, mit der Nutzern das Styling von Geodaten über eine UI ermöglicht wird.</p>
+
+<p>Die fertige Anwendung wird folgendermaßen aussehen:</p>
+
+<p><a href="./images/geostyler-workshop.gif"><img src="./images/geostyler-workshop.gif" alt="Finale Anwendung" /></a></p>
+
+<h2 id="überblick">Überblick</h2>
+
+<p>In diesem Workshop werden wir die drei Kernelemente des GeoStylers kennen lernen. Dabei wird keinerlei Vorwissen zum GeoStyler benötigt.</p>
+
+<ul>
+  <li><a href="#style-parser-readme">Style Parser</a> - Übersetzungseinheiten, die die Benutzung (fast) jeden Stilformats erlauben</li>
+  <li><a href="#ui-components-readme">UI Komponenten</a> - Grafische Komponenten zum Editieren von Stilen</li>
+  <li><a href="#data-parser-readme">Data Parser</a> - Übersetzungseinheiten, die das Einbinden von Daten erlauben</li>
+</ul>
+
+<p>Jeder Abschnitt baut auf den vorherigen Abschnitten auf. Dadurch empfiehlt es sich, den Workshop beim ersten Mal von
+vorne nach hinten durchzuarbeiten.</p>
+
+<h2 id="setup">Setup</h2>
+
+<p>Die folgenden Anweisungen und Übungen setzen voraus, dass bestimmte Anforderungen an euren Computer
+erfüllt sind. Bitte stellt sicher, dass folgende Programme installiert sind:</p>
+
+<ul>
+  <li>Einen geeigneten Text Editor, wie z.B. <a href="https://atom.io/">Atom</a>.</li>
+  <li><a href="https://nodejs.org/en/">NodeJS</a> in Version 12.</li>
+</ul>
+
+<h2 id="autoren">Autoren</h2>
+
+<ul>
+  <li>Jan Suleiman (<a href="mailto:suleiman@terrestris.de">suleiman@terrestris.de</a>)</li>
+</ul>
+
+<hr />
+
+<h1 id="grundlagen">Grundlagen</h1>
+
+<p>Bevor wir in die GeoStyler Bibliothek einsteigen, werfen wir einen kurzen Blick auf einige grundlegende Voraussetzungen:</p>
+
+<p>Für die Installation von GeoStyler nutzen wir den node package manager (<a href="https://www.npmjs.com/">npm</a>).
+Außerdem verwenden wir für die Entwicklung den JavaScript Standard <a href="https://en.wikipedia.org/wiki/ECMAScript">EcmaScript 6</a>.
+Daher empfehlen wir dies auch für die Nutzung unserer Bibliothek.</p>
+
+<p>Da es sich beim GeoStyler um eine React basierte Komponenten Bibliothek handelt, ist es unerlässlich, sich einen
+kurzen Überblick über <a href="https://reactjs.org/">React</a> zu verschaffen.</p>
+
+<h1 id="geostyler-aufbau">GeoStyler Aufbau</h1>
+
+<p>Der GeoStyler besteht aus drei wesentlichen Bestandteilen:</p>
+
+<ol>
+  <li>Die UI - ein Set an grafischen Komponenten zur Nutzerinteraktion</li>
+  <li>Die Style Parser - Übersetzungseinheiten, die zwischen verschiedenen Stilformaten übersetzen</li>
+  <li>Die Data Parser - Übersertzungseinheiten, die zwischen verschiedenen Datenformaten übersetzen</li>
+</ol>
+
+<h2 id="ui">UI</h2>
+
+<p>Die GeoStyler UI Komponenten ermöglichen das Stylen von Geodaten über eine grafische Oberfläche. Es wird
+eine Vielzahl von Komponenten angeboten, die sich alle anpassen und anwendungsspezifisch zusammensetzen lassen,
+sodass nur die gewünschten Stilelemente editiert werden können.</p>
+
+<p>Das Herzstück der GeoStyler UI ist die <code class="highlighter-rouge">Style</code> Komponente, auf die später noch weiter eingegangen wird.</p>
+
+<h2 id="style-parser">Style Parser</h2>
+
+<p>Style Parser ermöglichen das Übersetzen von bestehenden Stilformaten zum internen GeoStyler Stilformat und umgekehrt.
+Sie funktionieren wie ein Wörterbuch und erlauben so, dass die GeoStyler UI für viele verschiedene Stilformate genutzt werden kann.
+Dazu gehören zur Zeit u.a. SLD, OpenLayers oder auch QML (QGIS Stil).</p>
+
+<h2 id="data-parser">Data Parser</h2>
+
+<p>Data Parser verhalten sich genauso wie Stilparser, nur dass sie zwischen bestehenden Datenformaten wie SLD oder GeoJSON zum internen
+GeoStyler Datenformat übersetzen. Data Parser werden genutzt um attributives Stylen zu ermöglichen.</p>
+
+<hr />
+
+<h1 id="erste-schritte">Erste Schritte</h1>
+
+<p>Nachdem wir die Grundlagen thematisiert haben, erstellen wir in diesem Kapitel
+eine React Applikation und installieren den GeoStyler.</p>
+
+<ul>
+  <li><a href="#react-applikation-erstellen">React Applikation erstellen</a></li>
+  <li><a href="#geostyler-installieren">GeoStyler installieren</a></li>
+</ul>
+
+<h1 id="react-applikation-erstellen">React Applikation erstellen</h1>
+
+<p>Wie bereits beschrieben, basiert die GeoStyler UI auf React. Daher sollte zunächst eine
+React Applikation erstellt werden, auf deren Grundlage wir dann weiter aufbauen.
+Dazu navigiert einfach in einen beliebigen Ordner und führt im Terminal folgenden Befehl aus:</p>
+
+<pre><xmp>npx create-react-app </xmp></pre>
+
+<p>Hierbei entspricht der Name __ dem Projektnamen und kann beliebig gewählt werden.
+Ein entsprechender Ordner sollte im aktuellen Verzeichnis hinzugefügt worden sein. In diesem Ordner wurde
+mit Hilfe des Befehls eine einfache React Applikation erstellt, entsprechende Abhängigkeiten installiert
+und noch einige praktische Entwicklertools wie hot-reloading hinzugefügt, welche uns die Entwicklung ein
+bisschen bequemer machen.</p>
+
+<p>Navigiert nun mit dem Befehl</p>
+
+<pre><xmp>cd </xmp></pre>
+
+<p>in das Projektverzeichnis und startet dort den Entwicklungsserver mittels</p>
+
+<pre><xmp>npm start</xmp></pre>
+
+<p>Die Applikation sollte jetzt über <a href="http://localhost:3000">http://localhost:3000</a> im Browser erreichbar
+und folgendes zu sehen sein:</p>
+
+<p><a href="../images/cra-startpage.png"><img src="../images/cra-startpage.png" alt="" /></a></p>
+
+<p>Als nächstes entfernen wir den bestehenden Code, damit wir später mit einer leeren Applikation starten
+können. Dazu ersetzt einfach den Inhalt in <code class="highlighter-rouge">src/App.js</code> mit folgendem Code:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Im nächsten Schritt zeigen wir, wie man GeoStyler installiert.</p>
+
+<h1 id="geostyler-installieren">GeoStyler installieren</h1>
+
+<h2 id="geostyler-ui-installieren">GeoStyler UI installieren</h2>
+<p>Da wir npm nutzen, ist die Installation von GeoStyler sehr einfach.
+Öffnet einen Terminal und führt folgenden Befehl im Projektverzeichnis aus:</p>
+
+<pre><xmp>npm i geostyler</xmp></pre>
+
+<p>Zusätzlich werden noch einige weitere Abhängigkeiten benötigt, die auf gleiche Weise
+installiert werden können:</p>
+
+<pre><xmp>npm i ol@6 antd@3</xmp></pre>
+
+<p>Hierbei werden <a href="https://openlayers.org/">OpenLayers</a> in Version 6 und <a href="https://ant.design/">antd</a> in Version 3 installiert. OpenLayers wird für
+die Darstellung von (Vorschau-)Karten benötigt und antd versorgt uns mit grundlegenden UI Komponenten
+wie z.B. Buttons.</p>
+
+<h2 id="geostyler-parser-installieren">GeoStyler Parser installieren</h2>
+
+<p>Style und Data Parser müssen separat installiert werden, damit nur die Parser vorhanden sind, die auch gebraucht werden. In diesem Workshop
+nutzen wir den SLD und OpenLayers Style Parser, sowie den WFS Data Parser.</p>
+
+<p>Führt folgende Befehle aus um die Parser zu installieren:</p>
+
+<pre><xmp>npm i geostyler-sld-parser</xmp></pre>
+<pre><xmp>npm i geostyler-openlayers-parser</xmp></pre>
+<pre><xmp>npm i geostyler-wfs-parser</xmp></pre>
+
+<hr />
+
+<h1 id="style-parser"><a name="style-parser-readme"></a>Style Parser</h1>
+
+<p>In diesem Kapitel erklären wir, wie die verschiedenen Style Parser genutzt werden können, um
+zwischen verschiedenen Stilformaten zu übersetzen. Da alle Parser eine einheitliche Schnittstelle
+haben, macht es keinen Unterschied, welcher Parser genutzt wird. Der Ablauf und die Funktionsnamen
+sind immer dieselben.</p>
+
+<ul>
+  <li><a href="#sld-parsen">SLD parsen</a></li>
+  <li><a href="#openlayers-stil-parsen">OpenLayers Stil parsen</a></li>
+  <li><a href="#stile-konvertieren">Stile konvertieren</a></li>
+</ul>
+
+<h1 id="sld-parsen">SLD parsen</h1>
+
+<p>Um SLDs parsen zu können benötigen wir zunächst zwei Dinge. Den <code class="highlighter-rouge">geostyler-sld-parser</code> und ein SLD, das wir parsen möchten.</p>
+
+<blockquote>
+  <p><strong>info</strong>
+Zur Erinnerung: Ein Style Parser übersetzt immer zwischen einem Stilformat und dem internen GeoStyler Stilformat. In diesem
+Fall werden wir ein SLD lesen und schreiben.</p>
+</blockquote>
+
+<p>Den <code class="highlighter-rouge">geostyler-sld-parser</code> haben wir bereits mittels</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i geostyler-sld-parser
+</code></pre></div></div>
+
+<p>in einem vorherigen Kapitel installiert. Daher reicht es jetzt aus, ihn in unsere Applikation zu importieren.</p>
+
+<p>Dazu fügt folgendes Statement der <code class="highlighter-rouge">src/App.js</code> hinzu:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">SldParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-sld-parser</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Als nächstes muss der SldParser instanziiert werden. Dies geschieht mittels</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">sldParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SldParser</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Um ein SLD zu lesen wird die Funktion <code class="highlighter-rouge">readStyle</code> der sldParser Instanz genutzt. Diese erwartet einen SLD String
+als Argument und gibt ein Promise mit dem entsprechenden GeoStyler Stil zurück.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sldParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">sld</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit dem gelesenen Stil aufrufen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Um ein SLD zu schreiben, wird die Funkltion <code class="highlighter-rouge">writeStyle</code> der sldParser Instanz genutzt. Diese erwartet ein
+GeoStyler Style Objekt als Argument und gibt ein Promise mit dem entsprechenden SLD String zurück.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sld</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit dem geschriebenen Stil aufrufen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Ein Beispiel SLD können wir händisch in eine Variable schreiben, oder wir laden uns dynamisch ein online verfügbares SLD
+mittels <code class="highlighter-rouge">fetch()</code> herunter. Bspw. einen <a href="https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld">einfachen Punktstil</a>.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld</span><span class="dl">'</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sld</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit dem geschriebenen Stil aufrufen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Auf unsere Applikation angewandt, würde das wie im unteren Code Schnipsel aussehen. Die Variablen für die geschriebenen und gelesenen Stile
+haben wir als State-Variablen deklariert und stellen deren Inhalt in der Applikation dar.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">SldParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-sld-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">sldParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SldParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">originalSld</span><span class="p">,</span> <span class="nx">setOriginalSld</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">sld</span><span class="p">,</span> <span class="nx">setSld</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld</span><span class="dl">'</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+        <span class="p">}</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">text</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setOriginalSld</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+        <span class="nx">setSld</span><span class="p">(</span><span class="nx">text</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span>  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">sld</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">sldParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">sld</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">sld</span><span class="p">]);</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sldStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setSld</span><span class="p">(</span><span class="nx">sldStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">style</span><span class="p">]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">originalSld</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">style</span><span class="p">)}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">sld</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Eure Applikation sollte jetzt folgendermaßen aussehen:</p>
+
+<p><a href="../images/sld-parsed.png"><img src="../images/sld-parsed.png" alt="Gelesenes und geschriebenes SLD" /></a></p>
+
+<p>Der erste Abschnitt zeigt das originale SLD, der zweite das gelesene SLD im GeoStyler Stilformat, und der dritte Abschnitt
+das geschriebene SLD.</p>
+
+<h1 id="openlayers-stil-parsen">OpenLayers Stil parsen</h1>
+
+<p>Einen OpenLayers Stil zu parsen erfordert die gleichen Schritte, wie sie auch beim parsen eines SLDs nötig sind.
+Wir werden wieder die <code class="highlighter-rouge">readStyle</code> und <code class="highlighter-rouge">writeStyle</code> Funktionen des Parsers verwenden. Diesmal machen wir allerdings
+vom <code class="highlighter-rouge">geostyler-openlayers-parser</code> gebrauch und benutzen keinen SLD String, sondern ein OpenLayer Stil Objekt.</p>
+
+<p>Die Installation des <code class="highlighter-rouge">geostyler-openlayers-parser</code> wurde bereits in einem vorherigen Kapitel mittels</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i geostyler-openlayers-parser
+</code></pre></div></div>
+
+<p>durchgeführt. Als nächstes muss der Parser durch folgendes Statement importiert werden</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>und instanziiert werden</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Jetzt brauchen wir nur noch ein OpenLayers Stil Objekt, das geparsed werden soll</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Style</span><span class="p">({</span>
+    <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+        <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}),</span>
+    <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+        <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+    <span class="p">}),</span>
+    <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+        <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+            <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+        <span class="p">}),</span>
+        <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Dieses kann jetzt mittels <code class="highlighter-rouge">readStyle</code> und <code class="highlighter-rouge">writeStyle</code> geparsed werden</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit dem gelesenen Stil aufrufen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+    <span class="p">});</span>
+
+<span class="nx">olParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">olStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit dem geschriebenen Stil aufrufen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">));</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>In unserer Applikation sähe das folgendermaßen aus:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="nx">originalOlStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Style</span><span class="p">({</span>
+      <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}),</span>
+      <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+      <span class="p">}),</span>
+      <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+          <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+              <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+          <span class="p">}),</span>
+          <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="p">})</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">olStyle</span><span class="p">,</span> <span class="nx">setOlStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">originalOlStyle</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span>  <span class="p">{</span>
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">olStyle</span><span class="p">]);</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">style</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">newOlStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setOlStyle</span><span class="p">(</span><span class="nx">newOlStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[</span><span class="nx">style</span><span class="p">]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">originalOlStyle</span><span class="p">)}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">style</span><span class="p">)}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p><a href="..images/ol-parsed.png"><img src="../images/ol-parsed.png" alt="Gelesener und geschriebener OpenLayers Stil" /></a></p>
+
+<p>Der erste Abschnitt zeigt den originalen OpenLayers Stil, der zweite den gelesenen OpenLayers Stil im GeoStyler Stilformat, und der dritte Abschnitt
+den geschriebenen OpenLayers Stil.</p>
+
+<h1 id="stile-konvertieren">Stile konvertieren</h1>
+
+<p>Da jeder Style Parser sowohl lesen als auch schreiben kann, können wir auch zwischen verschiedenen Formaten konvertieren.
+Das kann sehr nützlich sein, wenn man bspw. bereits eine Reihe von Stilvorschriften in einem Format besitzt, aufgrund technischer
+Änderungen mittlerweile aber ein anderes Stilformat unterstützt werden soll.</p>
+
+<p>In diesem Abschnitt werden wir OpenLayers Stile zu SLDs konvertieren, damit wir diese leichter persistieren können.</p>
+
+<p>Um Stile zu konvertieren, muss der Ausgansstil gelesen werden, um ein Objekt im  GeoStyler Stilformat zu erzeugen. Dieses Objekt
+wird dann mit dem entsprechenden Style Parser in das Zielformat übersetzt.</p>
+
+<p>Das verhält sich ungefährt so, wie wenn man von Englisch nach Französich übersetzen möchte, allerdings nur ein <code class="highlighter-rouge">Englisch &lt;-&gt; Deutsch</code>
+und ein <code class="highlighter-rouge">Französisch &lt;-&gt; Deutsch</code> Wörterbuch zur Hand hat. Wir übersetzen also zunächst von Englisch nach Deutsch und dann von Deutsch
+nach Französisch. In unserem konkreten Fall also von OpenLayers Stil nach GeoStyler Stil, und dann von GeoStyler Stil nach SLD. Im
+Gegensatz zur Sprache macht uns Grammatik keine Probleme und wir können davon ausgehen, dass die Übersetzung stimmt.</p>
+
+<p>Importieren wir zunächst die benötigten Parser</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">SldParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-sld-parser</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>und instanziieren sie</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">sldParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SldParser</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Als nächstes benötigen wir ein OpenLayers Stil Objekt das wir konvertieren möchten</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Style</span><span class="p">({</span>
+    <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+        <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}),</span>
+    <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+        <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+    <span class="p">}),</span>
+    <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+        <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+            <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+        <span class="p">}),</span>
+        <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>Um den OpenLayers Stil zu konvertieren, lesen wir diesen zunächst mit dem <code class="highlighter-rouge">geostyler-openlayers-parser</code> und verwenden dann den Ausgabewert
+als Argument für die Schreibfunktion des <code class="highlighter-rouge">geostyler-sld-parser</code>.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sld</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit dem konvertierten Stil aufrufen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">);</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>Für unsere Applikation sähe das folgendermaßen aus:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="nx">SldParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-sld-parser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">sldParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SldParser</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="nx">originalOlStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Style</span><span class="p">({</span>
+      <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}),</span>
+      <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+      <span class="p">}),</span>
+      <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+          <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+              <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+          <span class="p">}),</span>
+          <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="p">})</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">sld</span><span class="p">,</span> <span class="nx">setSld</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">originalOlStyle</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sldStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setSld</span><span class="p">(</span><span class="nx">sldStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">originalOlStyle</span><span class="p">)}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">style</span><span class="p">)}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="nx">sld</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="sr">/p</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p><a href="../images/converted.png"><img src="../images/converted.png" alt="Zu SLD konvertierter OpenLayers Stil" /></a></p>
+
+<p>Der erste Abschnitt zeigt den originalen OpenLayers Stil, der zweite den gelesenen OpenLayers Stil im GeoStyler Stilformat, und der dritte Abschnitt
+das geschriebenene SLD.</p>
+
+<hr />
+
+<h1 id="ui-komponenten-verwenden"><a name="ui-components-readme"></a>UI Komponenten verwenden</h1>
+
+<p>Im vorigen Kapitel wurde gezeigt, wie man Style Parser verwendet. In diesem Kapitel schauen wir uns an,
+wie einzelne UI Komponenten erstellt und angepasst werden können, und wie Style Parser mit diesen verknüpft werden können.</p>
+
+<ul>
+  <li><a href="#geostyler-komponente-einbinden">GeoStyler Komponente einbinden</a></li>
+  <li><a href="#previewmap-komponente">PreviewMap Komponente</a></li>
+  <li><a href="#style-parser-mit-ui-verknüpfen">Style Parser mit UI verknüpfen</a></li>
+</ul>
+
+<h1 id="geostyler-komponente-einbinden">GeoStyler Komponente einbinden</h1>
+
+<p>Um GeoStyler Komponenten nutzen zu können, müssen diese über das <code class="highlighter-rouge">import</code> Statement
+eingeladen werden. Danach kann die jeweilige Komponente in der Applikation genutzt werden.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Komponente</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="p">...</span>
+
+<span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Komponente</span> <span class="nx">property1</span><span class="o">=</span><span class="p">...</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Grundsätzlich ist es wichtig sich die <a href="https://geostyler.github.io/geostyler/latest/index.html">Dokumentation</a> der jeweiligen Komponente
+anzuschauen und entsprechende Properties zu setzen.</p>
+
+<p>In diesem Kapitel werden wir die <code class="highlighter-rouge">Style</code> Komponente verwenden. Die entsprechende Dokumentation
+befindet sich <a href="https://geostyler.github.io/geostyler/latest/index.html#/Components/Style/Style">hier</a>.</p>
+
+<p>Die <code class="highlighter-rouge">Style</code> Komponente hat keine verpflichtenden Properties und kann daher ohne weiteres in eine
+Applikation eingebunden werden.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Anschließend sollte die Style Komponente sichtbar sein und ihr könnt bereits verschiedene Styling Einstellungen vornehmen.</p>
+
+<p><a href="..images/basic.png"><img src="../images/basic.png" alt="Style Komponente" /></a></p>
+
+<p>Mit dem <code class="highlighter-rouge">compact</code> Property können wir das tabellarische Layout der <code class="highlighter-rouge">Style</code> Komponente verwenden. Dazu muss nur das Property
+<code class="highlighter-rouge">compact</code> auf <code class="highlighter-rouge">true</code> gesetzt werden.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="nx">Style</span>
+  <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+<span class="sr">/</span><span class="err">&gt;
+</span></code></pre></div></div>
+
+<p>Die Applikation sollte jetzt folgendermaßen aussehen:</p>
+
+<p><a href="../images/compact.png"><img src="../images/compact.png" alt="Compact Layout" /></a></p>
+
+<h1 id="previewmap-komponente">PreviewMap Komponente</h1>
+
+<p>Die <code class="highlighter-rouge">PreviewMap</code> Komponente stellt den erzeugten Stil in einer Karte dar.</p>
+
+<p>Dazu erwartet die Komponente ein <code class="highlighter-rouge">style</code> Property, das den entsprechenden GeoStyler Stil enthält.</p>
+
+<p>Um Zugriff zu dem Stil in der <code class="highlighter-rouge">Style</code> Komponente zu bekommen, nutzen wir die <code class="highlighter-rouge">onStyleChange</code> Methode
+der Komponente und speichern den Stil in einer State-Variablen.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span>
+          <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+          <span class="nx">onStyleChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">newStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">newStyle</span><span class="p">)}}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Danach können wir die <code class="highlighter-rouge">PreviewMap</code> Komponente importieren</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">PreviewMap</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>und die Komponente der Applikation hinzufügen</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">PreviewMap</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span>
+          <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+          <span class="nx">onStyleChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">newStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">newStyle</span><span class="p">)}}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="p">{</span>
+          <span class="nx">style</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">PreviewMap</span>
+              <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+            <span class="sr">/</span><span class="err">&gt;
+</span>          <span class="p">)</span>
+        <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Anschließend sollte die Applikation folgendermaßen aussehen</p>
+
+<p><a href="../images/previewMap.png"><img src="../images/previewMap.png" alt="PreviewMap Komponente" /></a></p>
+
+<h1 id="style-parser-mit-ui-verknüpfen">Style Parser mit UI verknüpfen</h1>
+
+<p>Parser können mit der UI verknüpft werden um bspw. bestehende Stile direkt in der UI anzeigen und editieren zu können.</p>
+
+<p>In diesem Abschnitt werden wir einen OpenLayers Stil mit der UI verknüpfen. Dazu verwenden wir wieder den
+<code class="highlighter-rouge">geostyler-openlayers-parser</code> um den OpenLayers Stil zu lesen. Grundsätzlich ist die Vorgehensweise für alle Parser
+identisch.</p>
+
+<p>Zuerst muss der <code class="highlighter-rouge">geostyler-openlayers-parser</code> importiert werden</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>und dann instanziiert werden</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Dann benötigen wir ein OpenLayers Stil Objekt</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Style</span><span class="p">({</span>
+    <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+        <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+        <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}),</span>
+    <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+        <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+    <span class="p">}),</span>
+    <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+        <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+            <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+        <span class="p">}),</span>
+        <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>und parsen dieses Objekt in das GeoStyler Stilformat.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktion mit gelesenem OpenLayers Stil ausführen</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>In unserer Applikation verwenden wir dazu State-Variablen. Achtet hierbei auf die Umbenennung
+der OpenLayers <code class="highlighter-rouge">Style</code> Klasse zu <code class="highlighter-rouge">OlStyle</code> um Namenskonflikte mit der GeoStyler <code class="highlighter-rouge">Style</code> Komponente zu vermeiden.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span> <span class="k">as</span> <span class="nx">OlStyle</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">PreviewMap</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlStyle</span><span class="p">({</span>
+      <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}),</span>
+      <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+      <span class="p">}),</span>
+      <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+          <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+              <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+          <span class="p">}),</span>
+          <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="p">})</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span>
+          <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+          <span class="nx">onStyleChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">newStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">newStyle</span><span class="p">)}}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="p">{</span>
+          <span class="nx">style</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">PreviewMap</span>
+              <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+            <span class="sr">/</span><span class="err">&gt;
+</span>          <span class="p">)</span>
+        <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Anschließend setzen wir das <code class="highlighter-rouge">style</code> Property der <code class="highlighter-rouge">Style</code> Komponente auf den gelesenen Stil.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span> <span class="k">as</span> <span class="nx">OlStyle</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">PreviewMap</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlStyle</span><span class="p">({</span>
+      <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}),</span>
+      <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+      <span class="p">}),</span>
+      <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+          <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+              <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+          <span class="p">}),</span>
+          <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="p">})</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span>
+          <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+          <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+          <span class="nx">onStyleChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">newStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">newStyle</span><span class="p">)}}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="p">{</span>
+          <span class="nx">style</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">PreviewMap</span>
+              <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+            <span class="sr">/</span><span class="err">&gt;
+</span>          <span class="p">)</span>
+        <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Der in der Variablen <code class="highlighter-rouge">olStyle</code> definierte Stil wird jetzt direkt beim Aufruf der Applikation in der <code class="highlighter-rouge">Style</code> Komponente dargestellt.</p>
+
+<p><a href="../images/parser-to-ui.png"><img src="../images/parser-to-ui.png" alt="Der OpenLayers Stil wird direkt in der GeoStyler UI dargestellt" /></a></p>
+
+<hr />
+
+<h1 id="data-parser"><a name="data-parser-readme"></a>Data Parser</h1>
+
+<p>In diesem Kapitel zeigen wir, wie Data Parser für attributives Styling genutzt werden können.</p>
+
+<ul>
+  <li><a href="#wfs-parsen">WFS parsen</a></li>
+  <li><a href="#data-parser-mit-ui-verknüpfen">Data Parser mit UI verknüpfen</a></li>
+</ul>
+
+<h1 id="wfs-parsen">WFS parsen</h1>
+
+<p>Im Gegensatz zu Style Parsern, können Data Parser Datenformate nur lesen und nicht schreiben. Das bedeutet, dass wir immer
+bestehende Datenformate in das GeoStyler Datenformat konvertieren und nicht umgekehrt.</p>
+
+<p>Daher besitzen Data Parser auch nur eine einzelne Funktion - <code class="highlighter-rouge">readData</code>. Diese Funktion ist für alle Data Parser identisch
+und hat als Rückgabewert immer ein GeoStyler Data Objekt.</p>
+
+<p>In diesem Abschnitt zeigen wir, wie man ein WFS parsen kann. Das geparste WFS wird dann im folgenden Kapitel genutzt um
+attributives Styling in der UI zu ermöglichen.</p>
+
+<p>Da wir den <code class="highlighter-rouge">geostyler-wfs-parser</code> bereits durch</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm i geostyler-wfs-parser
+</code></pre></div></div>
+
+<p>installiert haben, müssen wir den Parser nur importieren</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">WfsParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-wfs-parser</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>und instanziieren.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">wfsParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WfsParser</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>Danach kann ein WFS mittels</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">wfsParser</span><span class="p">.</span><span class="nx">readData</span><span class="p">(</span><span class="nx">wfsParams</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="c1">// Hier Aktionen mit gelesenem WFS ausführen. Bspw.</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">geostylerData</span><span class="p">));</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<p>gelesen werden.</p>
+
+<p>Die Variable <code class="highlighter-rouge">wfsParams</code> ist ein Objekt, welches mindestens url, version, typeName, und srs eines WFS angeben muss.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">wfsParams</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.1.0</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">typeName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">terrestris:bundeslaender</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">srsName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EPSG:4326</span><span class="dl">'</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>In unserer Applikation kann der WFS Data Parser folgendermaßen genutzt werden:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span> <span class="k">as</span> <span class="nx">OlStyle</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">PreviewMap</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">WfsParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-wfs-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">wfsParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WfsParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="nx">wfsParams</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.1.0</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">typeName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">terrestris:bundeslaender</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">srsName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EPSG:4326</span><span class="dl">'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlStyle</span><span class="p">({</span>
+      <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}),</span>
+      <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+      <span class="p">}),</span>
+      <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+          <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+              <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+          <span class="p">}),</span>
+          <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="p">})</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+
+    <span class="nx">wfsParser</span><span class="p">.</span><span class="nx">readData</span><span class="p">(</span><span class="nx">wfsParams</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setData</span><span class="p">(</span><span class="nx">gsData</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span>
+          <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+          <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+          <span class="nx">onStyleChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">newStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">newStyle</span><span class="p">)}}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="p">{</span>
+        <span class="nx">style</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">PreviewMap</span>
+            <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="p">)</span>
+      <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h1 id="data-parser-mit-ui-verknüpfen">Data Parser mit UI Verknüpfen</h1>
+
+<p>Um attributives Styling zu ermöglichen, muss das gelesene Datenformat der <code class="highlighter-rouge">Style</code> Komponente über das <code class="highlighter-rouge">data</code> Property
+hinzugefügt werden.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//...</span>
+<span class="o">&lt;</span><span class="nx">Style</span>
+    <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">}</span>
+<span class="sr">/</span><span class="err">&gt;
+</span><span class="c1">//...</span>
+</code></pre></div></div>
+
+<p>Das Gleiche können wir auch für die <code class="highlighter-rouge">PreviewMap</code> Komponente machen, damit die Daten auch in der Vorschau dargestellt werden können.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//...</span>
+<span class="o">&lt;</span><span class="nx">PreviewMap</span>
+    <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+    <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">}</span>
+<span class="sr">/</span><span class="err">&gt;
+</span><span class="c1">//...</span>
+</code></pre></div></div>
+
+<p>In unserer Applikation sieht das folgendermaßen aus:</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Stroke</span><span class="p">,</span> <span class="nx">Fill</span><span class="p">,</span> <span class="nx">Style</span> <span class="k">as</span> <span class="nx">OlStyle</span><span class="p">,</span> <span class="nx">Circle</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">ol/style</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Style</span><span class="p">,</span> <span class="nx">PreviewMap</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">OlParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-openlayers-parser</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">WfsParser</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">geostyler-wfs-parser</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="dl">'</span><span class="s1">antd/dist/antd.css</span><span class="dl">'</span><span class="p">;</span>
+
+<span class="kd">const</span> <span class="nx">olParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlParser</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">wfsParser</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WfsParser</span><span class="p">();</span>
+
+<span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+
+  <span class="kd">const</span> <span class="nx">wfsParams</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.1.0</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">typeName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">terrestris:bundeslaender</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">srsName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EPSG:4326</span><span class="dl">'</span>
+  <span class="p">};</span>
+
+  <span class="kd">const</span> <span class="nx">olStyle</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OlStyle</span><span class="p">({</span>
+      <span class="na">stroke</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Stroke</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 255, 255, 1.0)</span><span class="dl">'</span><span class="p">,</span>
+          <span class="na">width</span><span class="p">:</span> <span class="mi">1</span>
+      <span class="p">}),</span>
+      <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+          <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(0, 0, 0, 1)</span><span class="dl">'</span>
+      <span class="p">}),</span>
+      <span class="na">image</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Circle</span><span class="p">({</span>
+          <span class="na">fill</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Fill</span><span class="p">({</span>
+              <span class="na">color</span><span class="p">:</span> <span class="dl">'</span><span class="s1">rgba(255, 0, 0, 1.0)</span><span class="dl">'</span>
+          <span class="p">}),</span>
+          <span class="na">radius</span><span class="p">:</span> <span class="mi">5</span>
+      <span class="p">})</span>
+  <span class="p">});</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">data</span><span class="p">,</span> <span class="nx">setData</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
+
+  <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+      <span class="p">});</span>
+
+    <span class="nx">wfsParser</span><span class="p">.</span><span class="nx">readData</span><span class="p">(</span><span class="nx">wfsParams</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsData</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">setData</span><span class="p">(</span><span class="nx">gsData</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Style</span>
+          <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+          <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">}</span>
+          <span class="nx">compact</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+          <span class="nx">onStyleChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">newStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">setStyle</span><span class="p">(</span><span class="nx">newStyle</span><span class="p">)}}</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="p">{</span>
+        <span class="nx">style</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="nx">PreviewMap</span>
+            <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">style</span><span class="p">}</span>
+            <span class="nx">data</span><span class="o">=</span><span class="p">{</span><span class="nx">data</span><span class="p">}</span>
+          <span class="sr">/</span><span class="err">&gt;
+</span>        <span class="p">)</span>
+      <span class="p">}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+
+</code></pre></div></div>
+
+<p>Dadurch wurden datenabhängige Features wie Klassifizierungen aktiviert. Die Applikation sollte jetzt folgendermaßen aussehen
+(beachtet den aktivierten <code class="highlighter-rouge">Classification</code> Button):</p>
+
+<p><a href="../images/attributive.png"><img src="../images/attributive.png" alt="Attributives Styling. Hier wurde bereits eine Klassifikation erzeugt." /></a></p>
+
+<hr />
+
+<h1 id="zusammenfassung">Zusammenfassung</h1>
+
+<p>In diesem Workshop habt ihr gelernt wie der GeoStyler und seine Kernkomponenten funktionieren.</p>
+
+<p>Dazu gehört das Verwenden der Style Parser, um zwischen verschiedenen Stilformaten wie SLD oder OpenLayers Stilen zu konvertieren,
+und auch um bereits existierende Stile mit der GeoStyler UI zu verknüpfen.</p>
+
+<p>Zusätzlich habt ihr gelernt, wie UI Komponenten verwendet und angepasst werden können.</p>
+
+<p>Zum Schluss konntet ihr euch noch einen kleinen Überblick über die Data Parser verschaffen und wie durch diese attributives Styling
+mit der GeoStyler UI ermöglicht wird.</p>
+
+<p>Wir hoffen, dieser Workshop konnte euch über die Grundfunktionalität des GeoStylers informieren und dazu motivieren den GeoStyler in
+eurer eigenen Applikation zu verwenden.</p>
+
+<p>Bei Fragen und Anregungen, Feature Requests oder Bug Reports stellt einfach ein Issue im <a href="https://github.com/geostyler/geostyler/issues/new/choose">GeoStyler Repository</a>.</p>
+
+<hr />
+
+<h1 id="imprint">Imprint</h1>
+
+<p>Dieser Workshop ist unter der Lizenz <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA</a> lizenziert. Bei Fragen können Sie sich gerne über GitHub <a href="https://github.com/terrestris">@terrestris</a>, E-Mail <a href="mailto:info@terrestris.de">info@terrestris.de</a> oder Telefon 0228 – 962 899 51 an uns wenden.</p>
+
+<h2 id="autoren">Autoren</h2>
+
+<ul>
+  <li>Jan Suleiman (<a href="mailto:suleiman@terrestris.de">suleiman@terrestris.de</a>)</li>
+</ul>
+
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GeoStyler Beginner Workshop</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">GeoStyler Beginner Workshop</li><li><a class="u-email" href="mailto:suleiman@terrestris.de">suleiman@terrestris.de</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/geostyler"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">geostyler</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Workshop on how to use GeoStyler from scratch. No prior knowledge needed.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
