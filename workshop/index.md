@@ -4,3 +4,8 @@
 
 layout: home
 ---
+
+{% for chapter in site.data.content %}
+    {% capture my_include %}{% include_relative {{chapter.url}} %}{% endcapture %}
+    {{ my_include | markdownify }}
+{% endfor %}
