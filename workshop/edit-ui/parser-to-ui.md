@@ -1,25 +1,24 @@
 
-# Style Parser mit UI verknüpfen
+# Connect Style Parsers with UI
 
-Parser können mit der UI verknüpft werden um bspw. bestehende Stile direkt in der UI anzeigen und editieren zu können.
+We can connect parsers with the UI in order to display and edit existing styles in the UI.
 
-In diesem Abschnitt werden wir einen OpenLayers Stil mit der UI verknüpfen. Dazu verwenden wir wieder den
-`geostyler-openlayers-parser` um den OpenLayers Stil zu lesen. Grundsätzlich ist die Vorgehensweise für alle Parser
-identisch.
+In this section, we will connect an OpenLayers style with the UI. We will make use of the
+`geostyler-openlayers-parser` in order to read the OpenLayers style. The general approach is the same for all parsers.
 
-Zuerst muss der `geostyler-openlayers-parser` importiert werden
+At first, we have to import the `geostyler-openlayers-parser`
 
 ```js
 import OlParser from 'geostyler-openlayers-parser';
 ```
 
-und dann instanziiert werden
+and then instantiate it
 
 ```js
 const olParser = new OlParser();
 ```
 
-Dann benötigen wir ein OpenLayers Stil Objekt
+Then, we need an OpenLayers style object
 
 ```js
 import { Stroke, Fill, Style, Circle } from 'ol/style';
@@ -41,17 +40,17 @@ const olStyle = new Style({
 });
 ```
 
-und parsen dieses Objekt in das GeoStyler Stilformat.
+which we can then parse into the GeoStyler styling format.
 
 ```js
 olParser.readStyle(olStyle)
     .then((geostylerStyle) => {
-        // Hier Aktion mit gelesenem OpenLayers Stil ausführen
+        // Run your actions with the parsed style here
     });
 ```
 
-In unserer Applikation verwenden wir dazu State-Variablen. Achtet hierbei auf die Umbenennung
-der OpenLayers `Style` Klasse zu `OlStyle` um Namenskonflikte mit der GeoStyler `Style` Komponente zu vermeiden.
+In our application we make use of React's state-variables. Please notice the renaming of the OpenLayers class
+`Style` to `OlStyle` to avoid naming conflicts with the GeoStyler `Style` component.
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -110,7 +109,7 @@ function App() {
 export default App;
 ```
 
-Anschließend setzen wir das `style` Property der `Style` Komponente auf den gelesenen Stil.
+Afterwards we set the `style` property of the `Style` component to the parsed style.
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -170,6 +169,6 @@ function App() {
 export default App;
 ```
 
-Der in der Variablen `olStyle` definierte Stil wird jetzt direkt beim Aufruf der Applikation in der `Style` Komponente dargestellt.
+The style defined in the variable `olStyle` will now directly displayed in the `Style` component of our application, on startup.
 
-[![Der OpenLayers Stil wird direkt in der GeoStyler UI dargestellt](./images/parser-to-ui.png)](./images/parser-to-ui.png)
+[![The OpenLayers style will be displayed directly in the GeoStyler UI.](./images/parser-to-ui.png)](./images/parser-to-ui.png)

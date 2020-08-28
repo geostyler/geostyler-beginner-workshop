@@ -1,12 +1,12 @@
 
-# PreviewMap Komponente
+# PreviewMap Component
 
-Die `PreviewMap` Komponente stellt den erzeugten Stil in einer Karte dar.
+The `PreviewMap` component displays a created style in the map.
 
-Dazu erwartet die Komponente ein `style` Property, das den entsprechenden GeoStyler Stil enthält.
+In order to to so, the component expects a `style` property that contains the GeoStyler style to display.
 
-Um Zugriff zu dem Stil in der `Style` Komponente zu bekommen, nutzen wir die `onStyleChange` Methode
-der Komponente und speichern den Stil in einer State-Variablen.
+To get the style edited in the `Style` component, we use the `onStyleChange` method and store the style
+in a state-variable.
 
 ```js
 import React, { useState } from 'react';
@@ -31,13 +31,13 @@ function App() {
 export default App;
 ```
 
-Danach können wir die `PreviewMap` Komponente importieren
+Afterwards, we can import the `PreviewMap` component
 
 ```js
 import { PreviewMap } from 'geostyler';
 ```
 
-und die Komponente der Applikation hinzufügen
+and add it to the application
 
 ```js
 import React, { useState } from 'react';
@@ -69,6 +69,7 @@ function App() {
 export default App;
 ```
 
-Anschließend sollte die Applikation folgendermaßen aussehen
+The application should now look like this:
 
-[![PreviewMap Komponente](./images/previewMap.png)](./images/previewMap.png)
+
+[![PreviewMap Component](./images/previewMap.png)](./images/previewMap.png)

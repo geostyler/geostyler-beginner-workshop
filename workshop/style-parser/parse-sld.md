@@ -1,56 +1,56 @@
 
-# SLD parsen
+# Parsing SLD
 
-Um SLDs parsen zu können benötigen wir zunächst zwei Dinge. Den `geostyler-sld-parser` und ein SLD, das wir parsen möchten.
+In order to parse SLD, we need two things. The `geostyler-sld-parser` and a SLD that we want to parse.
 
 > **info**
-> Zur Erinnerung: Ein Style Parser übersetzt immer zwischen einem Stilformat und dem internen GeoStyler Stilformat. In diesem
-> Fall werden wir ein SLD lesen und schreiben.
+> As a reminder: A Styler Parser always translates between a styling format and the internal GeoStyler style format.
+> In this case, we will read and write SLD.
 
-Den `geostyler-sld-parser` haben wir bereits mittels
+We already installed the `geostyler-sld-parser` via
 
 ```bash
 npm i geostyler-sld-parser
 ```
 
-in einem vorherigen Kapitel installiert. Daher reicht es jetzt aus, ihn in unsere Applikation zu importieren.
+in a previous chapter. So now, we just have to import it into our application.
 
-Dazu fügt folgendes Statement der `src/App.js` hinzu:
+To do so, add following statement to `src/App.js`:
 
 ```js
 import SldParser from 'geostyler-sld-parser';
 ```
 
-Als nächstes muss der SldParser instanziiert werden. Dies geschieht mittels
+Next, the SldParser has to be instantiated. This can be done via
 
 ```js
 const sldParser = new SldParser();
 ```
 
-Um ein SLD zu lesen wird die Funktion `readStyle` der sldParser Instanz genutzt. Diese erwartet einen SLD String
-als Argument und gibt ein Promise mit dem entsprechenden GeoStyler Stil zurück.
+In order to read a SLD, the method `readStyle` of the sldParser instance will be used. This method expects
+a SLD string as argument and returns a Promise with the matching GeoStyler style.
 
 ```js
 sldParser.readStyle(sld)
     .then((geostylerStyle) => {
-        // Hier Aktionen mit dem gelesenen Stil aufrufen. Bspw.
+        // Run your actions with the parsed style here. E.g.
         console.log(geostylerStyle);
     });
 ```
 
-Um ein SLD zu schreiben, wird die Funkltion `writeStyle` der sldParser Instanz genutzt. Diese erwartet ein
-GeoStyler Style Objekt als Argument und gibt ein Promise mit dem entsprechenden SLD String zurück.
+In order to write a SLD, we use the method `writeStyle` of the sldParser instance. This methods expects
+a GeoStyler style object as argument and returns a Promise with the matching SLD string.
 
 ```js
 sldParser.writeStyle(geostylerStyle)
     .then((sld) => {
-        // Hier Aktionen mit dem geschriebenen Stil aufrufen. Bspw.
+        // Run your actions with the written style here. E.g.
         console.log(sld);
     });
 ```
 
-Ein Beispiel SLD können wir händisch in eine Variable schreiben, oder wir laden uns dynamisch ein online verfügbares SLD
-mittels `fetch()` herunter. Bspw. einen [einfachen Punktstil](https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld).
+We can manually store an example SLD in a variable, or we can dynamically load an online available SLD via `fetch()`.
+E.g. a [simple point style](https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld).
 
 ```js
 fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld')
@@ -58,13 +58,13 @@ fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/d
         return response.text();
     })
     .then((sld) => {
-        // Hier Aktionen mit dem geschriebenen Stil aufrufen. Bspw.
+        // Run your actions with the fetched style here. E.g.
         console.log(sld);
     });
 ```
 
-Auf unsere Applikation angewandt, würde das wie im unteren Code Schnipsel aussehen. Die Variablen für die geschriebenen und gelesenen Stile
-haben wir als State-Variablen deklariert und stellen deren Inhalt in der Applikation dar.
+Applying this concept to our application, the code should look like below. The variables for the written and read styles were declared
+as React-state-variables and we can display their contents in the application.
 
 ```js
 
@@ -132,9 +132,9 @@ function App() {
 export default App;
 ```
 
-Eure Applikation sollte jetzt folgendermaßen aussehen:
+Your application should now look as follows:
 
-[![Gelesenes und geschriebenes SLD](./images/sld-parsed.png)](./images/sld-parsed.png)
+[![Read and written SLD](./images/sld-parsed.png)](./images/sld-parsed.png)
 
-Der erste Abschnitt zeigt das originale SLD, der zweite das gelesene SLD im GeoStyler Stilformat, und der dritte Abschnitt
-das geschriebene SLD.
+The first section shows the original SLD. The second section shows the read SLD in the GeoStyler format. The third section
+shows the written SLD.

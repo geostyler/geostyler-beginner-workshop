@@ -1,46 +1,44 @@
 
-# WFS parsen
+# Parsing WFS
 
-Im Gegensatz zu Style Parsern, können Data Parser Datenformate nur lesen und nicht schreiben. Das bedeutet, dass wir immer
-bestehende Datenformate in das GeoStyler Datenformat konvertieren und nicht umgekehrt.
+In contrast to Style Parsers, Data Parsers can only read data formats, not write them. This means, we can only
+convert existing data formats into the GeoStyler data format, not the other way around.
 
-Daher besitzen Data Parser auch nur eine einzelne Funktion - `readData`. Diese Funktion ist für alle Data Parser identisch
-und hat als Rückgabewert immer ein GeoStyler Data Objekt.
+Therefore, Data Parses only have one single method - `readData`. This method is the same for all Data Parsers and
+always returns a GeoStyler data object.
 
-In diesem Abschnitt zeigen wir, wie man ein WFS parsen kann. Das geparste WFS wird dann im folgenden Kapitel genutzt um
-attributives Styling in der UI zu ermöglichen.
+In this chapter, we will show how to parse WFS. The parsed WFS will then be used in the next chapter to enable
+attributive styling in the UI.
 
-Da wir den `geostyler-wfs-parser` bereits durch
+Since we already installed the `geostyler-wfs-parser` via
 
 ```bash
 npm i geostyler-wfs-parser
 ```
 
-installiert haben, müssen wir den Parser nur importieren
+in a previous chapter, we just have to import it via
 
 ```js
 import WfsParser from 'geostyler-wfs-parser';
 ```
 
-und instanziieren.
+and instantiate it.
 
 ```js
 const wfsParser = new WfsParser();
 ```
 
-Danach kann ein WFS mittels
+Afterwards, a WFS can be read via
 
 ```js
 wfsParser.readData(wfsParams)
     .then((geostylerData) => {
-        // Hier Aktionen mit gelesenem WFS ausführen. Bspw.
+        // Run your actions with the read WFS here. E.g.
         console.log(JSON.stringify(geostylerData));
     });
 ```
 
-gelesen werden.
-
-Die Variable `wfsParams` ist ein Objekt, welches mindestens url, version, typeName, und srs eines WFS angeben muss.
+The variable `wfsParams` expects at least the properties url, version, typeName and srs of a WFS.
 
 ```js
 const wfsParams = {
@@ -51,7 +49,7 @@ const wfsParams = {
 };
 ```
 
-In unserer Applikation kann der WFS Data Parser folgendermaßen genutzt werden:
+In our application, we can use the WFS Data Parser as follows:
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -125,4 +123,3 @@ function App() {
 
 export default App;
 ```
-

@@ -1,11 +1,11 @@
 
 ---
 
-# <a name="ui-components-readme"></a>UI Komponenten verwenden
+# <a name="ui-components-readme"></a>Using UI Components
 
-Im vorigen Kapitel wurde gezeigt, wie man Style Parser verwendet. In diesem Kapitel schauen wir uns an,
-wie einzelne UI Komponenten erstellt und angepasst werden können, und wie Style Parser mit diesen verknüpft werden können.
+In the previous section, we showed how to use Style Parsers. In this chapter, we will take a look at how to created and customize
+different UI components, as well as how to connect these with the Style Parsers.
 
-- [GeoStyler Komponente einbinden](#geostyler-komponente-einbinden)
-- [PreviewMap Komponente](#previewmap-komponente)
-- [Style Parser mit UI verknüpfen](#style-parser-mit-ui-verknüpfen)
+- [Import GeoStyler Component](#import-geostyler-component)
+- [PreviewMap Component](#previewmap-component)
+- [Connect Style Parsers with UI](#connect-style-parsers-with-ui)

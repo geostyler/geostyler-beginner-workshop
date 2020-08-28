@@ -1,10 +1,10 @@
 
 --- 
 
-# Erste Schritte
+# First Steps
 
-Nachdem wir die Grundlagen thematisiert haben, erstellen wir in diesem Kapitel
-eine React Applikation und installieren den GeoStyler.
+After talking about the basics, we will now create a React application and we will
+install GeoStyler
 
-- [React Applikation erstellen](#react-applikation-erstellen)
-- [GeoStyler installieren](#geostyler-installieren)
+- [Create React Application](#create-react-application)
+- [Install GeoStyler](#install-geostyler)

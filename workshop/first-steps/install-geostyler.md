@@ -1,27 +1,26 @@
 
-# GeoStyler installieren
+# Install GeoStyler
 
-## GeoStyler UI installieren
-Da wir npm nutzen, ist die Installation von GeoStyler sehr einfach.
-Öffnet einen Terminal und führt folgenden Befehl im Projektverzeichnis aus:
+## Install GeoStyler UI
+
+Since we are using npm, the installation of GeoStyler is straightforward.
+Open a terminal and run following command from the root of your application directory:
 
 <pre><xmp>npm i geostyler</xmp></pre>
 
-Zusätzlich werden noch einige weitere Abhängigkeiten benötigt, die auf gleiche Weise
-installiert werden können:
+Additionally, we have to install a few dependencies, which can be installed in the same manner:
 
 <pre><xmp>npm i ol@6 antd@3</xmp></pre>
 
-Hierbei werden [OpenLayers](https://openlayers.org/) in Version 6 und [antd](https://ant.design/) in Version 3 installiert. OpenLayers wird für
-die Darstellung von (Vorschau-)Karten benötigt und antd versorgt uns mit grundlegenden UI Komponenten
-wie z.B. Buttons.
+Through this, we install [OpenLayers](https://openlayers.org/) in version 6 and [antd](https://ant.design/) in version 3. OpenLayers will be used
+for the displaying of (preview-) maps and antd provides the very basic ui components, such as buttons.
 
-## GeoStyler Parser installieren
+# Install GeoStyler Parsers
 
-Style und Data Parser müssen separat installiert werden, damit nur die Parser vorhanden sind, die auch gebraucht werden. In diesem Workshop
-nutzen wir den SLD und OpenLayers Style Parser, sowie den WFS Data Parser.
+The Style and Data Parsers have to be installed separately. This makes sure that you really just installed those parsers that you actually want to use.
+In this workshop, we will use the SLD and OpenLayers Style Parser, as well as the WFS Data Parser.
 
-Führt folgende Befehle aus um die Parser zu installieren:
+Execute following command to install the parsers:
 
 <pre><xmp>npm i geostyler-sld-parser</xmp></pre>
 <pre><xmp>npm i geostyler-openlayers-parser</xmp></pre>

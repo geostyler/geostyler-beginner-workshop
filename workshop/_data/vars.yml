@@ -2,3 +2,4 @@ workshopName: GeoStyler Beginner Workshop
 authors:
   - name: Jan Suleiman
     mail: suleiman@terrestris.de
+reactAppName: geostyler-app

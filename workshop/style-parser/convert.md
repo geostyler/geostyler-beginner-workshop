@@ -1,35 +1,36 @@
 
-# Stile konvertieren
+# Converting Styles
 
-Da jeder Style Parser sowohl lesen als auch schreiben kann, können wir auch zwischen verschiedenen Formaten konvertieren.
-Das kann sehr nützlich sein, wenn man bspw. bereits eine Reihe von Stilvorschriften in einem Format besitzt, aufgrund technischer
-Änderungen mittlerweile aber ein anderes Stilformat unterstützt werden soll.
+Since every Style Parser can both read and write, we are also able to convert between different formats.
+This can come in very handy if you already have a bunch of styles in a certain styling format, but you now want to use
+another styling format.
 
-In diesem Abschnitt werden wir OpenLayers Stile zu SLDs konvertieren, damit wir diese leichter persistieren können.
+In this section, we will convert OpenLayers styles to SLD, in order to persist them as files.
 
-Um Stile zu konvertieren, muss der Ausgansstil gelesen werden, um ein Objekt im  GeoStyler Stilformat zu erzeugen. Dieses Objekt
-wird dann mit dem entsprechenden Style Parser in das Zielformat übersetzt.
+In order to convert styles, we have to first read the input style and create thereby a GeoStyler style object. This object can
+then be used with to convert to the output styling format, by using the appropriate Style Parser.
 
-Das verhält sich ungefährt so, wie wenn man von Englisch nach Französich übersetzen möchte, allerdings nur ein `Englisch <-> Deutsch`
-und ein `Französisch <-> Deutsch` Wörterbuch zur Hand hat. Wir übersetzen also zunächst von Englisch nach Deutsch und dann von Deutsch
-nach Französisch. In unserem konkreten Fall also von OpenLayers Stil nach GeoStyler Stil, und dann von GeoStyler Stil nach SLD. Im
-Gegensatz zur Sprache macht uns Grammatik keine Probleme und wir können davon ausgehen, dass die Übersetzung stimmt.
+Imagine you want to translate a text from English to French but you only have a `English <-> German` and a `German <-> French` dictionary.
+You cannot directly translate from English to French, but you can translate from English to German in a first and from German to French in
+a second step. With GeoStyler we do exactly the same. At first, we translate from any input style to the internal GeoStyler format. Then,
+we translate from our internal GeoStyler format to any output style. In contrast to translating texts, we do not have to care for grammar,
+as can thereby be sure that the translations actually make sense.
 
-Importieren wir zunächst die benötigten Parser
+Let's import the required parsers
 
 ```js
 import OlParser from 'geostyler-openlayers-parser';
 import SldParser from 'geostyler-sld-parser';
 ```
 
-und instanziieren sie
+and instantiate them
 
 ```js
 const olParser = new OlParser();
 const sldParser = new SldParser();
 ```
 
-Als nächstes benötigen wir ein OpenLayers Stil Objekt das wir konvertieren möchten
+Next, we need an OpenLayers style that we want to convert
 
 ```js
 import { Stroke, Fill, Style, Circle } from 'ol/style';
@@ -51,8 +52,8 @@ const olStyle = new Style({
 });
 ```
 
-Um den OpenLayers Stil zu konvertieren, lesen wir diesen zunächst mit dem `geostyler-openlayers-parser` und verwenden dann den Ausgabewert
-als Argument für die Schreibfunktion des `geostyler-sld-parser`.
+At first, we read the OpenLayers style with the `geostyler-openlayers-parser` and use the output as argument for the
+write method of the `geostyler-sld-parser`.
 
 ```js
 olParser.readStyle(olStyle)
@@ -60,12 +61,12 @@ olParser.readStyle(olStyle)
         return sldParser.writeStyle(geostylerStyle);
     })
     .then((sld) => {
-        // Hier Aktionen mit dem konvertierten Stil aufrufen. Bspw.
+        // Run your actions with the converted style here
         console.log(sld);
     });
 ```
 
-Für unsere Applikation sähe das folgendermaßen aus:
+For our application, it will work as follows:
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -127,7 +128,7 @@ function App() {
 export default App;
 ```
 
-[![Zu SLD konvertierter OpenLayers Stil](./images/converted.png)](./images/converted.png)
+[![To SLD converted OpenLayers style](./images/converted.png)](./images/converted.png)
 
-Der erste Abschnitt zeigt den originalen OpenLayers Stil, der zweite den gelesenen OpenLayers Stil im GeoStyler Stilformat, und der dritte Abschnitt
-das geschriebenene SLD.
+The first section shows the original OpenLayers style. The second section the parsed OpenLayers style as GeoStyler style. The third section shows
+the written SLD style.

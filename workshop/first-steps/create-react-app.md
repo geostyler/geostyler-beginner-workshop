@@ -1,34 +1,33 @@
 
-# React Applikation erstellen
+# Create React Application
 
-Wie bereits beschrieben, basiert die GeoStyler UI auf React. Daher sollte zunächst eine
-React Applikation erstellt werden, auf deren Grundlage wir dann weiter aufbauen.
-Dazu navigiert einfach in einen beliebigen Ordner und führt im Terminal folgenden Befehl aus:
+As mentioned before, the GeoStyler UI is a React library. So before using GeoStyler, we should create
+a basic React application that we then extend step by step.
+To do so, just navigate into any folder you like and execute following command on the terminal:
 
-<pre><xmp>npx create-react-app {{ book.reactAppName }}</xmp></pre>
+<pre><xmp>npx create-react-app {{ site.data.vars.reactAppName }}</xmp></pre>
 
-Hierbei entspricht der Name _{{ book.reactAppName }}_ dem Projektnamen und kann beliebig gewählt werden.
-Ein entsprechender Ordner sollte im aktuellen Verzeichnis hinzugefügt worden sein. In diesem Ordner wurde
-mit Hilfe des Befehls eine einfache React Applikation erstellt, entsprechende Abhängigkeiten installiert
-und noch einige praktische Entwicklertools wie hot-reloading hinzugefügt, welche uns die Entwicklung ein
-bisschen bequemer machen.
+In this case _{{ site.data.vars.reactAppName }}_ is our application name and you can give it any name you like.
+A folder with the same name should have been created within your current directory. With the help of
+the command above, a basic React application should have been created within that directory. Also,
+all dependencies and some neat developer tools such as hot-reloading were added as well. These tools
+should facilitate the development process for us.
 
-Navigiert nun mit dem Befehl
+Now, move to the project directory with following command
 
+<pre><xmp>cd {{ site.data.vars.reactAppName }}</xmp></pre>
 
-<pre><xmp>cd {{ book.reactAppName }}</xmp></pre>
-
-in das Projektverzeichnis und startet dort den Entwicklungsserver mittels
+and start the development server with
 
 <pre><xmp>npm start</xmp></pre>
 
-Die Applikation sollte jetzt über [http://localhost:3000](http://localhost:3000) im Browser erreichbar
-und folgendes zu sehen sein:
+You should now be able to see the application on [http://localhost:3000](http://localhost:3000) in your browser.
+It should look like this:
 
 [![](./images/cra-startpage.png)](./images/cra-startpage.png)
 
-Als nächstes entfernen wir den bestehenden Code, damit wir später mit einer leeren Applikation starten
-können. Dazu ersetzt einfach den Inhalt in `src/App.js` mit folgendem Code:
+Next, we remove the existing code, so we can start with an empty application. To do so, simply replace
+the content of `src/App.js` with following code:
 
 ```js
 import React from 'react';
@@ -42,4 +41,4 @@ function App() {
 export default App;
 ```
 
-Im nächsten Schritt zeigen wir, wie man GeoStyler installiert.
+In the next step, we will show how to install GeoStyler.
