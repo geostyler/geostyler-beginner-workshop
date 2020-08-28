@@ -25,7 +25,7 @@ in das Projektverzeichnis und startet dort den Entwicklungsserver mittels
 Die Applikation sollte jetzt über [http://localhost:3000](http://localhost:3000) im Browser erreichbar
 und folgendes zu sehen sein:
 
-[![](../images/cra-startpage.png)](../images/cra-startpage.png)
+[![](./images/cra-startpage.png)](./images/cra-startpage.png)
 
 Als nächstes entfernen wir den bestehenden Code, damit wir später mit einer leeren Applikation starten
 können. Dazu ersetzt einfach den Inhalt in `src/App.js` mit folgendem Code:

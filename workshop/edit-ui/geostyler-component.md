@@ -44,7 +44,7 @@ export default App;
 
 Anschließend sollte die Style Komponente sichtbar sein und ihr könnt bereits verschiedene Styling Einstellungen vornehmen.
 
-[![Style Komponente](../images/basic.png)](..images/basic.png)
+[![Style Komponente](./images/basic.png)](./images/basic.png)
 
 Mit dem `compact` Property können wir das tabellarische Layout der `Style` Komponente verwenden. Dazu muss nur das Property
 `compact` auf `true` gesetzt werden.
@@ -57,5 +57,5 @@ Mit dem `compact` Property können wir das tabellarische Layout der `Style` Komp
 
 Die Applikation sollte jetzt folgendermaßen aussehen:
 
-[![Compact Layout](../images/compact.png)](../images/compact.png)
+[![Compact Layout](./images/compact.png)](./images/compact.png)
 

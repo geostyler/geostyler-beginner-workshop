@@ -172,4 +172,4 @@ export default App;
 
 Der in der Variablen `olStyle` definierte Stil wird jetzt direkt beim Aufruf der Applikation in der `Style` Komponente dargestellt.
 
-[![Der OpenLayers Stil wird direkt in der GeoStyler UI dargestellt](../images/parser-to-ui.png)](../images/parser-to-ui.png)
+[![Der OpenLayers Stil wird direkt in der GeoStyler UI dargestellt](./images/parser-to-ui.png)](./images/parser-to-ui.png)

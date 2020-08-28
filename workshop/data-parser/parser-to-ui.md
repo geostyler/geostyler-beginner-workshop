@@ -104,4 +104,4 @@ export default App;
 Dadurch wurden datenabhängige Features wie Klassifizierungen aktiviert. Die Applikation sollte jetzt folgendermaßen aussehen
 (beachtet den aktivierten `Classification` Button):
 
-[![Attributives Styling. Hier wurde bereits eine Klassifikation erzeugt.](../images/attributive.png)](../images/attributive.png)
+[![Attributives Styling. Hier wurde bereits eine Klassifikation erzeugt.](./images/attributive.png)](./images/attributive.png)

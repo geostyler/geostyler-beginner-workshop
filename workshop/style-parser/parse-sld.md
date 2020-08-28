@@ -134,7 +134,7 @@ export default App;
 
 Eure Applikation sollte jetzt folgendermaßen aussehen:
 
-[![Gelesenes und geschriebenes SLD](../images/sld-parsed.png)](../images/sld-parsed.png)
+[![Gelesenes und geschriebenes SLD](./images/sld-parsed.png)](./images/sld-parsed.png)
 
 Der erste Abschnitt zeigt das originale SLD, der zweite das gelesene SLD im GeoStyler Stilformat, und der dritte Abschnitt
 das geschriebene SLD.
