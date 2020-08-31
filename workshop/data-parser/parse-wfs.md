@@ -38,7 +38,7 @@ wfsParser.readData(wfsParams)
     });
 ```
 
-The variable `wfsParams` expects at least the properties url, version, typeName and srs of a WFS.
+The variable `wfsParams` expects at least the properties `url`, `version`, `typeName` and `srs` of a WFS.
 
 ```js
 const wfsParams = {
