@@ -58,7 +58,7 @@ fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/d
         return response.text();
     })
     .then((sld) => {
-        // Run your actions with the fetched style here. E.g.
+        // Run your actions with the fetched style here, e.g.
         console.log(sld);
     });
 ```
