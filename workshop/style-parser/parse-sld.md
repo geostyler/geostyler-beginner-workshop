@@ -33,7 +33,7 @@ a SLD string as argument and returns a Promise with the matching GeoStyler style
 ```js
 sldParser.readStyle(sld)
     .then((geostylerStyle) => {
-        // Run your actions with the parsed style here. E.g.
+        // Run your actions with the parsed style here, e.g.
         console.log(geostylerStyle);
     });
 ```
