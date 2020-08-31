@@ -4,7 +4,7 @@
 ## Install GeoStyler UI
 
 Since we are using npm, the installation of GeoStyler is straightforward.
-Open a terminal and run following command from the root of your application directory:
+Open a terminal and run the following command from the root of your application directory:
 
 <pre><xmp>npm i geostyler</xmp></pre>
 
