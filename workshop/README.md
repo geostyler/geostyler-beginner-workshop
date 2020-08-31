@@ -4,7 +4,7 @@
 # {{site.data.vars.workshopName}}
 
 Welcome to the **{{ site.data.vars.workshopName }}**. This workshop will give you a first overview
-over GeoStyler, a web-based tool for interactive styling of geographic data.
+of the GeoStyler, a web-based tool for interactive styling of geographic data.
 
 In this workshop, we will create a basic application that allows users to style geographic data via a graphical user interface.
 
