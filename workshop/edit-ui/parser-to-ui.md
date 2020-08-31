@@ -169,6 +169,6 @@ function App() {
 export default App;
 ```
 
-The style defined in the variable `olStyle` will now directly displayed in the `Style` component of our application, on startup.
+The style defined in the variable `olStyle` will now be displayed directly in the `Style` component of our application, on startup.
 
 [![The OpenLayers style will be displayed directly in the GeoStyler UI.](./images/parser-to-ui.png)](./images/parser-to-ui.png)
