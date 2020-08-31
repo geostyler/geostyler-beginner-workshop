@@ -33,7 +33,7 @@ Afterwards, a WFS can be read via
 ```js
 wfsParser.readData(wfsParams)
     .then((geostylerData) => {
-        // Run your actions with the read WFS here. E.g.
+        // Run your actions with the read WFS here, e.g.
         console.log(JSON.stringify(geostylerData));
     });
 ```
