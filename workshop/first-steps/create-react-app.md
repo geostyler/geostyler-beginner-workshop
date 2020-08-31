@@ -3,7 +3,7 @@
 
 As mentioned before, the GeoStyler UI is a React library. So before using GeoStyler, we should create
 a basic React application that we then extend step by step.
-To do so, just navigate into any folder you like and execute following command on the terminal:
+To do so, just navigate into any folder you like and execute the following command on the terminal:
 
 <pre><xmp>npx create-react-app {{ site.data.vars.reactAppName }}</xmp></pre>
 
