@@ -41,7 +41,7 @@ function App() {
 export default App;
 ```
 
-After this, you should be able to see the `Style` component and you should be able to edit styles.
+Afterwards you should be able to see the `Style` component and you should be able to edit styles.
 
 [![Style Component](./images/basic.png)](./images/basic.png)
 
