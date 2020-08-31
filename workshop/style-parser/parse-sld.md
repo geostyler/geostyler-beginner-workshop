@@ -44,7 +44,7 @@ a GeoStyler style object as argument and returns a Promise with the matching SLD
 ```js
 sldParser.writeStyle(geostylerStyle)
     .then((sld) => {
-        // Run your actions with the written style here. E.g.
+        // Run your actions with the written style here, e.g.
         console.log(sld);
     });
 ```
