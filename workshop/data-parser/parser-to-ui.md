@@ -1,5 +1,5 @@
 
-# Connect Data Parsers With UI
+# Connect Data Parsers With The UI
 
 To enable attributive styling, we have to add the data format we already read in to the `Style` component. This can be done
 via the `data` property.

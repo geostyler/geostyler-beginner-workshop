@@ -28,7 +28,7 @@ const sldParser = new SldParser();
 ```
 
 In order to read a SLD, the method `readStyle` of the sldParser instance will be used. This method expects
-a SLD string as argument and returns a Promise with the matching GeoStyler style.
+a SLD string as argument and returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) with the matching GeoStyler style.
 
 ```js
 sldParser.readStyle(sld)

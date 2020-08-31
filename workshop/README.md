@@ -28,7 +28,7 @@ to end, if you do this workshop for the first time.
 The following instructions and exercises require some already installed programs on your computer.
 Please make sure that the following programs are installed:
 
-- A usable text editor, e.g. [Atom](https://atom.io/).
+- A usable text editor, e.g. [VSCode](https://code.visualstudio.com/).
 - [NodeJS](https://nodejs.org/en/) in version 12.
 
 ## Authors

@@ -1,9 +1,9 @@
 
 # Connect Style Parsers with UI
 
-We can connect parsers with the UI in order to display and edit existing styles in the UI.
+We can connect Style Parsers with the UI in order to display and edit existing styles in the UI.
 
-In this section, we will connect an OpenLayers style with the UI. We will make use of the
+In this section, we will connect an [OpenLayers style](https://openlayers.org/en/latest/apidoc/module-ol_style_Style-Style.html) with the UI. We will make use of the
 `geostyler-openlayers-parser` in order to read the OpenLayers style. The general approach is the same for all parsers.
 
 At first, we have to import the `geostyler-openlayers-parser`

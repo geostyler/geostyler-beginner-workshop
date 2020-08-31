@@ -8,7 +8,7 @@ another styling format.
 In this section, we will convert OpenLayers styles to SLD, in order to persist them as files.
 
 In order to convert styles, we have to first read the input style and create thereby a GeoStyler style object. This object can
-then be used with to convert to the output styling format, by using the appropriate Style Parser.
+then be used to convert to the output style format, by using the appropriate Style Parser.
 
 Imagine you want to translate a text from English to French but you only have a `English <-> German` and a `German <-> French` dictionary.
 You cannot directly translate from English to French, but you can translate from English to German in a first and from German to French in

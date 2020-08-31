@@ -6,4 +6,4 @@
 In this chapter, we will show how to use Data Parsers for attributive styling.
 
 - [Parsing WFS](#parsing-wfs)
-- [Connect Data Parsers With UI](#connect-data-parsers-with-ui)
+- [Connect Data Parsers With UI](#connect-data-parsers-with-the-ui)
