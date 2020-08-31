@@ -16,7 +16,7 @@ return (
 )
 ```
 
-It is very important to take a look at the [Documentation](https://geostyler.github.io/geostyler/latest/index.html) of the used component and
+It is very important to take a look at the [documentation](https://geostyler.github.io/geostyler/latest/index.html) of the used component and
 to set the properties accordingly.
 
 We will use the `Style` component in this chapter. The documentation of the component can be
