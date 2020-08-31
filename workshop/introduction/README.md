@@ -15,7 +15,7 @@ Since GeoStyler is a React-based component library, it is crucial to take a look
 
 GeoStyler consists of three main building blocks:
 
-1. The UI - a set of ui components to provide user interaction
+1. The UI - a set of UI components to provide user interaction
 2. The Style Parsers - translation entities that translate between different styling formats
 3. The Data Parsers - translation entites that translate between different data formats
 
