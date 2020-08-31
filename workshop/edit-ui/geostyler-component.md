@@ -1,7 +1,7 @@
 
 # Import GeoStyler Component
 
-In order to use GeoStyler compontents, we have to import these via the `import` statement.
+In order to use GeoStyler components, we have to import these via the `import` statement.
 Afterwards, we are able to use the respective component within our application.
 
 ```js
