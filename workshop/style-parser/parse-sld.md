@@ -49,7 +49,7 @@ sldParser.writeStyle(geostylerStyle)
     });
 ```
 
-We can manually store an example SLD in a variable, or we can dynamically load an online available SLD via `fetch()`.
+We can manually store an example SLD in a variable or we can dynamically load a SLD available remotely via `fetch()`.
 E.g. a [simple point style](https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld).
 
 ```js
