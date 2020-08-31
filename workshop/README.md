@@ -26,7 +26,7 @@ to end, if you do this workshop for the first time.
 ## Setup
 
 The following instructions and exercises require some already installed programs on your computer.
-Please make sure that the following programms are installed:
+Please make sure that the following programs are installed:
 
 - A usable text editor, e.g. [Atom](https://atom.io/).
 - [NodeJS](https://nodejs.org/en/) in version 12.
