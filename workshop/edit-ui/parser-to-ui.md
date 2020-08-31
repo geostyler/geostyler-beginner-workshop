@@ -40,7 +40,7 @@ const olStyle = new Style({
 });
 ```
 
-which we can then parse into the GeoStyler styling format.
+which we then can parse into the GeoStyler style format.
 
 ```js
 olParser.readStyle(olStyle)
