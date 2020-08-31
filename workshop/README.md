@@ -25,7 +25,7 @@ to end, if you do this workshop for the first time.
 
 ## Setup
 
-The following instructions and exercises require some already installed programms on your computer.
+The following instructions and exercises require some already installed programs on your computer.
 Please make sure that the following programms are installed:
 
 - A usable text editor, e.g. [Atom](https://atom.io/).
