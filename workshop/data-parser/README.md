@@ -1,9 +1,9 @@
 
 ---
 
-# <a name="data-parser-readme"></a>Data Parser
+# <a name="data-parsers-readme"></a>Data Parsers
 
-In diesem Kapitel zeigen wir, wie Data Parser für attributives Styling genutzt werden können.
+In this chapter, we will show how to use Data Parsers for attributive styling.
 
-- [WFS parsen](#wfs-parsen)
-- [Data Parser mit UI verknüpfen](#data-parser-mit-ui-verknüpfen)
+- [Parsing WFS](#parsing-wfs)
+- [Connect Data Parsers With UI](#connect-data-parsers-with-the-ui)

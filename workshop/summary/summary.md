@@ -1,19 +1,18 @@
 
 ---
 
-# Zusammenfassung
+# Summary
 
-In diesem Workshop habt ihr gelernt wie der GeoStyler und seine Kernkomponenten funktionieren.
+In this workshop you learned how GeoStyler and its core components work.
 
-Dazu gehört das Verwenden der Style Parser, um zwischen verschiedenen Stilformaten wie SLD oder OpenLayers Stilen zu konvertieren,
-und auch um bereits existierende Stile mit der GeoStyler UI zu verknüpfen.
+This included the usage of Style Parsers, in order to convert between different styling formats, such as SLD or OpenLayers styles.
+But also connecting already existing styles to the GeoStyler UI.
 
-Zusätzlich habt ihr gelernt, wie UI Komponenten verwendet und angepasst werden können.
+Additionally, you learned how to use and customize UI components.
 
-Zum Schluss konntet ihr euch noch einen kleinen Überblick über die Data Parser verschaffen und wie durch diese attributives Styling
-mit der GeoStyler UI ermöglicht wird.
+Finally, you got a brief overview of using Data Parsers and how they enable attributive styling with the GeoStyler UI.
 
-Wir hoffen, dieser Workshop konnte euch über die Grundfunktionalität des GeoStylers informieren und dazu motivieren den GeoStyler in
-eurer eigenen Applikation zu verwenden.
+We hope you enjoyed the workshop and you could get a first impression working with GeoStyler. We also hope that this workshop
+motivates you to use GeoStyler in your own application.
 
-Bei Fragen und Anregungen, Feature Requests oder Bug Reports stellt einfach ein Issue im [GeoStyler Repository](https://github.com/geostyler/geostyler/issues/new/choose).
+If you have questions, feedback, feature requests or noticed a few bugs, just create an Issue in the [GeoStyler Repository](https://github.com/geostyler/geostyler/issues/new/choose).
