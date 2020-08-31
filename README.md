@@ -3,35 +3,35 @@
 
 # {{site.data.vars.workshopName}}
 
-Herzlich Willkommen beim **{{ site.data.vars.workshopName }}**. Dieser Workshop soll einen einführenden
-Überblick über den GeoStyler als ein webbasiertes Werkzeug zur interaktiven Erstellung von kartographischen Style-Vorschriften für Geodaten geben.
+Welcome to the **{{ site.data.vars.workshopName }}**. This workshop will give you a first overview
+of the GeoStyler, a web-based tool for interactive styling of geographic data.
 
-In diesem Workshop werden wir eine einfache Anwendung schreiben, mit der Nutzern das Styling von Geodaten über eine UI ermöglicht wird.
+In this workshop, we will create a basic application that allows users to style geographic data via a graphical user interface.
 
-Die fertige Anwendung wird folgendermaßen aussehen:
+The final application will look like this:
 
-[![Finale Anwendung](./images/geostyler-workshop.gif)](./images/geostyler-workshop.gif)
+[![Final application](./images/geostyler-workshop.gif)](./images/geostyler-workshop.gif)
 
-## Überblick
+## Overview
 
-In diesem Workshop werden wir die drei Kernelemente des GeoStylers kennen lernen. Dabei wird keinerlei Vorwissen zum GeoStyler benötigt.
+In this workshop we will get to know the three core elements of GeoStyler. No previous knowledge regarding GeoStyler is needed.
 
-- [Style Parser](#style-parser-readme) - Übersetzungseinheiten, die die Benutzung (fast) jeden Stilformats erlauben
-- [UI Komponenten](#ui-components-readme) - Grafische Komponenten zum Editieren von Stilen
-- [Data Parser](#data-parser-readme) - Übersetzungseinheiten, die das Einbinden von Daten erlauben
+- [Style Parsers](#style-parsers-readme) - Translator entities that allow the usage of (nearly) any styling format
+- [UI Components](#ui-components-readme) - Graphical components to interactively edit styles
+- [Data Parsers](#data-parsers-readme) - Translator entities that allow the usage of geodata
 
-Jeder Abschnitt baut auf den vorherigen Abschnitten auf. Dadurch empfiehlt es sich, den Workshop beim ersten Mal von
-vorne nach hinten durchzuarbeiten.
+Every section is based on the results of the previous ones. So it makes sense to go through the workshop from start
+to end, if you do this workshop for the first time.
 
 ## Setup
 
-Die folgenden Anweisungen und Übungen setzen voraus, dass bestimmte Anforderungen an euren Computer
-erfüllt sind. Bitte stellt sicher, dass folgende Programme installiert sind:
+The following instructions and exercises require some already installed programs on your computer.
+Please make sure that the following programs are installed:
 
-- Einen geeigneten Text Editor, wie z.B. [Atom](https://atom.io/).
-- [NodeJS](https://nodejs.org/en/) in Version 12.
+- A usable text editor, e.g. [VSCode](https://code.visualstudio.com/).
+- [NodeJS](https://nodejs.org/en/) in version 12.
 
-## Autoren
+## Authors
 
 {% for author in site.data.vars.authors %}
 

@@ -1,13 +1,12 @@
 
 ---
 
-# <a name="style-parser-readme"></a>Style Parser
+# <a name="style-parsers-readme"></a>Style Parsers
 
-In diesem Kapitel erklären wir, wie die verschiedenen Style Parser genutzt werden können, um
-zwischen verschiedenen Stilformaten zu übersetzen. Da alle Parser eine einheitliche Schnittstelle
-haben, macht es keinen Unterschied, welcher Parser genutzt wird. Der Ablauf und die Funktionsnamen
-sind immer dieselben.
+In this chapter, we will explain how to use the different Style Parsers, in order to translate
+between different styling formats. Since all Style Parsers have a common interface, it does not
+matter which parser is being used. The required steps and method names are always the same.
 
-- [SLD parsen](#sld-parsen)
-- [OpenLayers Stil parsen](#openlayers-stil-parsen)
-- [Stile konvertieren](#stile-konvertieren)
+- [Parsing SLD](#parsing-sld)
+- [Parsing an OpenLayers Style](#parsing-an-openlayers-style)
+- [Converting Styles](#converting-styles)

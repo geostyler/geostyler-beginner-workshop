@@ -1,8 +1,8 @@
 
-# Data Parser mit UI Verknüpfen
+# Connect Data Parsers With The UI
 
-Um attributives Styling zu ermöglichen, muss das gelesene Datenformat der `Style` Komponente über das `data` Property
-hinzugefügt werden.
+To enable attributive styling, we have to add the data format we already read in to the `Style` component. This can be done
+via the `data` property.
 
 ```js
 //...
@@ -12,7 +12,7 @@ hinzugefügt werden.
 //...
 ```
 
-Das Gleiche können wir auch für die `PreviewMap` Komponente machen, damit die Daten auch in der Vorschau dargestellt werden können.
+We can do the same for the `PreviewMap` component, so that the preview also displays the data.
 
 ```js
 //...
@@ -23,7 +23,7 @@ Das Gleiche können wir auch für die `PreviewMap` Komponente machen, damit die 
 //...
 ```
 
-In unserer Applikation sieht das folgendermaßen aus:
+In our application this looks as follows:
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -101,7 +101,7 @@ export default App;
 
 ```
 
-Dadurch wurden datenabhängige Features wie Klassifizierungen aktiviert. Die Applikation sollte jetzt folgendermaßen aussehen
-(beachtet den aktivierten `Classification` Button):
+By that, we activated data dependent features, such as classifications. The application should now look as follows
+(notice the enabled `Classification` button):
 
-[![Attributives Styling. Hier wurde bereits eine Klassifikation erzeugt.](../images/attributive.png)](../images/attributive.png)
+[![Attributive Styling. We already created a classification here.](./images/attributive.png)](./images/attributive.png)

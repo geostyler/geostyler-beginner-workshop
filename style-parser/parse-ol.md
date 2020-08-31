@@ -1,29 +1,29 @@
 
-# OpenLayers Stil parsen
+# Parsing an OpenLayers Style
 
-Einen OpenLayers Stil zu parsen erfordert die gleichen Schritte, wie sie auch beim parsen eines SLDs nötig sind.
-Wir werden wieder die `readStyle` und `writeStyle` Funktionen des Parsers verwenden. Diesmal machen wir allerdings
-vom `geostyler-openlayers-parser` gebrauch und benutzen keinen SLD String, sondern ein OpenLayer Stil Objekt.
+Parsing an OpenLayers style requires the same steps as parsing SLDs.
+We will again use the `readStyle` and `writeStyle` methods of the parsers. However, this time, we will use
+the `geostyler-openlayers-parser` and do not use an SLD string, but rather an OpenLayers style object.
 
-Die Installation des `geostyler-openlayers-parser` wurde bereits in einem vorherigen Kapitel mittels
+The installation of the `geostyler-openlayers-parser` was already done in a previous chapter via
 
 ```bash
 npm i geostyler-openlayers-parser
 ```
 
-durchgeführt. Als nächstes muss der Parser durch folgendes Statement importiert werden
+Next, we have to import the parser
 
 ```js
 import OlParser from 'geostyler-openlayers-parser';
 ```
 
-und instanziiert werden
+and instantiate it.
 
 ```js
 const olParser = new OlParser();
 ```
 
-Jetzt brauchen wir nur noch ein OpenLayers Stil Objekt, das geparsed werden soll
+Now, we just need an OpenLayers style that should be parsed
 
 ```js
 import { Stroke, Fill, Style, Circle } from 'ol/style';
@@ -45,23 +45,23 @@ const olStyle = new Style({
 });
 ```
 
-Dieses kann jetzt mittels `readStyle` und `writeStyle` geparsed werden
+This can now be parsed via `readStyle` and `writeStyle`
 
 ```js
 olParser.readStyle(olStyle)
     .then((geostylerStyle) => {
-        // Hier Aktionen mit dem gelesenen Stil aufrufen. Bspw.
+        // Run your actions with the read style here, e.g.
         console.log(geostylerStyle);
     });
 
 olParser.writeStyle(geostylerStyle)
     .then((olStyle) => {
-        // Hier Aktionen mit dem geschriebenen Stil aufrufen. Bspw.
+        // Run your actions with the written style here, e.g.
         console.log(JSON.stringify(olStyle));
     });
 ```
 
-In unserer Applikation sähe das folgendermaßen aus:
+For our application, this should work as follows:
 
 ```js
 import React, { useState, useEffect } from 'react';
@@ -129,7 +129,7 @@ export default App;
 
 ```
 
-[![Gelesener und geschriebener OpenLayers Stil](../images/ol-parsed.png)](..images/ol-parsed.png)
+[![Read and written OpenLayers style](./images/ol-parsed.png)](.images/ol-parsed.png)
 
-Der erste Abschnitt zeigt den originalen OpenLayers Stil, der zweite den gelesenen OpenLayers Stil im GeoStyler Stilformat, und der dritte Abschnitt
-den geschriebenen OpenLayers Stil.
+The first section shows the original OpenLayers style. The second section shows the parsed OpenLayers style as GeoStyler style. The third
+section shows the written OpenLayers style.

@@ -1,29 +1,28 @@
 
-# GeoStyler Komponente einbinden
+# Import GeoStyler Component
 
-Um GeoStyler Komponenten nutzen zu können, müssen diese über das `import` Statement
-eingeladen werden. Danach kann die jeweilige Komponente in der Applikation genutzt werden.
+In order to use GeoStyler components, we have to import these via the `import` statement.
+Afterwards, we are able to use the respective component within our application.
 
 ```js
-import { Komponente } from 'geostyler';
+import { Component } from 'geostyler';
 
 ...
 
 return (
     <div>
-        <Komponente property1=... />
+        <Component property1=... />
     </div>
 )
 ```
 
-Grundsätzlich ist es wichtig sich die [Dokumentation](https://geostyler.github.io/geostyler/latest/index.html) der jeweiligen Komponente
-anzuschauen und entsprechende Properties zu setzen.
+It is very important to take a look at the [documentation](https://geostyler.github.io/geostyler/latest/index.html) of the used component and
+to set the properties accordingly.
 
-In diesem Kapitel werden wir die `Style` Komponente verwenden. Die entsprechende Dokumentation
-befindet sich [hier](https://geostyler.github.io/geostyler/latest/index.html#/Components/Style/Style).
+We will use the `Style` component in this chapter. The documentation of the component can be
+found [here](https://geostyler.github.io/geostyler/latest/index.html#/Components/Style/Style).
 
-Die `Style` Komponente hat keine verpflichtenden Properties und kann daher ohne weiteres in eine
-Applikation eingebunden werden.
+The `Style` component does not have any required properties, so we can directly use it in our application.
 
 ```js
 import React from 'react';
@@ -42,12 +41,12 @@ function App() {
 export default App;
 ```
 
-Anschließend sollte die Style Komponente sichtbar sein und ihr könnt bereits verschiedene Styling Einstellungen vornehmen.
+Afterwards you should be able to see the `Style` component and you should be able to edit styles.
 
-[![Style Komponente](../images/basic.png)](..images/basic.png)
+[![Style Component](./images/basic.png)](./images/basic.png)
 
-Mit dem `compact` Property können wir das tabellarische Layout der `Style` Komponente verwenden. Dazu muss nur das Property
-`compact` auf `true` gesetzt werden.
+Through the `compact` property, we are able to use the tabular layout of the `Style` component. To do so, we just have to
+set the property `compact` to `true`.
 
 ```js
 <Style
@@ -55,7 +54,6 @@ Mit dem `compact` Property können wir das tabellarische Layout der `Style` Komp
 />
 ```
 
-Die Applikation sollte jetzt folgendermaßen aussehen:
+Your application should now look as follows:
 
-[![Compact Layout](../images/compact.png)](../images/compact.png)
-
+[![Compact Layout](./images/compact.png)](./images/compact.png)
