@@ -3,7 +3,7 @@
 
 The `PreviewMap` component displays a created style in the map.
 
-In order to to so, the component expects a `style` property that contains the GeoStyler style to display.
+In order to do so, the component expects a `style` property that contains the GeoStyler style to display.
 
 To get the style edited in the `Style` component, we use the `onStyleChange` method and store the style
 in a state-variable.
