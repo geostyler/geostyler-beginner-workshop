@@ -16,7 +16,7 @@ The final application will look like this:
 
 In this workshop we will get to know the three core elements of GeoStyler. No previous knowledge regarding GeoStyler is needed.
 
-- [Style Parsers](#style-parsers-readme) - translator entities that allow the usage of (nearyl) any styling format
+- [Style Parsers](#style-parsers-readme) - Translator entities that allow the usage of (nearly) any styling format
 - [UI Components](#ui-components-readme) - Graphical components to interactively edit styles
 - [Data Parsers](#data-parsers-readme) - translator entities that allow the usage of geodata
 
