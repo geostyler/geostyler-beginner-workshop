@@ -17,13 +17,13 @@ GeoStyler consists of three main building blocks:
 
 1. The UI - a set of UI components to provide user interaction
 2. The Style Parsers - translation entities that translate between different styling formats
-3. The Data Parsers - translation entites that translate between different data formats
+3. The Data Parsers - translation entities that translate between different data formats
 
 ## UI
 
-The GeoStyler UI allows the styling of geographic data via a graphical user interace. We provide a multitude of components, which are customizable and which can be put together to fit many project specific requirements. At the end of the day, you can decide which map elements should be stylable, and which not.
+The GeoStyler UI allows the styling of geographic data via a graphical user interface. We provide a multitude of components, which are customizable and which can be put together to fit many project specific requirements. At the end of the day, you can decide which map elements should be styleable, and which not.
 
-The heart of the GeoStyler UI is the `Style` component, at which we will take a look at a later stage of this workshop.
+The centerpiece of the GeoStyler UI is the `Style` component, at which we will take a look at a later stage of this workshop.
 
 ## Style Parsers
 

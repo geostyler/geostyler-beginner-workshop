@@ -50,13 +50,13 @@ This can now be parsed via `readStyle` and `writeStyle`
 ```js
 olParser.readStyle(olStyle)
     .then((geostylerStyle) => {
-        // Run your actions with the read style here. E.g.
+        // Run your actions with the read style here, e.g.
         console.log(geostylerStyle);
     });
 
 olParser.writeStyle(geostylerStyle)
     .then((olStyle) => {
-        // Run your actions with the written style here. E.g.
+        // Run your actions with the written style here, e.g.
         console.log(JSON.stringify(olStyle));
     });
 ```
