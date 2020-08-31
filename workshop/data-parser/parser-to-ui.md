@@ -12,7 +12,7 @@ via the `data` property.
 //...
 ```
 
-We can do the same with for the `PreviewMap` component, so that the preview also displays the data.
+We can do the same for the `PreviewMap` component, so that the preview also displays the data.
 
 ```js
 //...
