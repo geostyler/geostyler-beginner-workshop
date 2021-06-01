@@ -12,7 +12,7 @@ const wfsParser = new WfsParser();
 function App() {
 
   const wfsParams = {
-    url: 'https://ows.terrestris.de/geoserver/terrestris/ows',
+    url: 'https://ows-demo.terrestris.de/geoserver/terrestris/ows',
     version: '1.1.0',
     typeName: 'terrestris:bundeslaender',
     srsName: 'EPSG:4326'
