@@ -13,7 +13,7 @@
 <meta property="og:url" content="/" />
 <meta property="og:site_name" content="GeoStyler Beginner Workshop" />
 <script type="application/ld+json">
-{"headline":"GeoStyler Beginner Workshop","@type":"WebSite","url":"/","name":"GeoStyler Beginner Workshop","description":"Workshop on how to use GeoStyler from scratch. No prior knowledge needed.","@context":"https://schema.org"}</script>
+{"@type":"WebSite","headline":"GeoStyler Beginner Workshop","url":"/","description":"Workshop on how to use GeoStyler from scratch. No prior knowledge needed.","name":"GeoStyler Beginner Workshop","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="GeoStyler Beginner Workshop" /><link rel="stylesheet" href="./assets/main.css" />
 </head>
@@ -176,13 +176,13 @@ the content of <code class="highlighter-rouge">src/App.js</code> with following 
 <p>Since we are using npm, the installation of GeoStyler is straightforward.
 Open a terminal and run the following command from the root of your application directory:</p>
 
-<pre><xmp>npm i geostyler</xmp></pre>
+<pre><xmp>npm i geostyler@7</xmp></pre>
 
 <p>Additionally, we have to install a few dependencies, which can be installed in the same manner:</p>
 
-<pre><xmp>npm i ol@6 antd@3</xmp></pre>
+<pre><xmp>npm i ol@6 antd@4</xmp></pre>
 
-<p>Through this, we install <a href="https://openlayers.org/">OpenLayers</a> in version 6 and <a href="https://ant.design/">antd</a> in version 3. OpenLayers will be used
+<p>Through this, we install <a href="https://openlayers.org/">OpenLayers</a> in version 6 and <a href="https://ant.design/">antd</a> in version 4. OpenLayers will be used
 for the displaying of (preview-) maps and antd provides the very basic ui components, such as buttons.</p>
 
 <h1 id="install-geostyler-parsers">Install GeoStyler Parsers</h1>
@@ -258,9 +258,9 @@ a GeoStyler style object as argument and returns a Promise with the matching SLD
 </code></pre></div></div>
 
 <p>We can manually store an example SLD in a variable or we can dynamically load a SLD available remotely via <code class="highlighter-rouge">fetch()</code>.
-E.g. a <a href="https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld">simple point style</a>.</p>
+E.g. a <a href="https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/1.0/point_simplepoint.sld">simple point style</a>.</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld</span><span class="dl">'</span><span class="p">)</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/1.0/point_simplepoint.sld</span><span class="dl">'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
     <span class="p">})</span>
@@ -286,7 +286,7 @@ as React-state-variables and we can display their contents in the application.</
   <span class="kd">const</span> <span class="p">[</span><span class="nx">style</span><span class="p">,</span> <span class="nx">setStyle</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">();</span>
 
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld</span><span class="dl">'</span><span class="p">)</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/1.0/point_simplepoint.sld</span><span class="dl">'</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
           <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
@@ -960,7 +960,7 @@ attributive styling in the UI.</p>
 <p>The variable <code class="highlighter-rouge">wfsParams</code> expects at least the properties <code class="highlighter-rouge">url</code>, <code class="highlighter-rouge">version</code>, <code class="highlighter-rouge">typeName</code> and <code class="highlighter-rouge">srs</code> of a WFS.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">wfsParams</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows-demo.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.1.0</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">typeName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">terrestris:bundeslaender</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">srsName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EPSG:4326</span><span class="dl">'</span>
@@ -983,7 +983,7 @@ attributive styling in the UI.</p>
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="kd">const</span> <span class="nx">wfsParams</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows-demo.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.1.0</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">typeName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">terrestris:bundeslaender</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">srsName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EPSG:4326</span><span class="dl">'</span>

@@ -50,10 +50,10 @@ sldParser.writeStyle(geostylerStyle)
 ```
 
 We can manually store an example SLD in a variable or we can dynamically load a SLD available remotely via `fetch()`.
-E.g. a [simple point style](https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld).
+E.g. a [simple point style](https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/1.0/point_simplepoint.sld).
 
 ```js
-fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld')
+fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/1.0/point_simplepoint.sld')
     .then((response) => {
         return response.text();
     })
@@ -80,7 +80,7 @@ function App() {
   const [style, setStyle] = useState();
 
   useEffect(() => {
-    fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/point_simplepoint.sld')
+    fetch('https://raw.githubusercontent.com/geostyler/geostyler-sld-parser/master/data/slds/1.0/point_simplepoint.sld')
       .then((res) => {
         if (res.ok) {
           return res.text();
