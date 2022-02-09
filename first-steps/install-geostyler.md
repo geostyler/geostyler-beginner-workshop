@@ -6,7 +6,7 @@
 Since we are using npm, the installation of GeoStyler is straightforward.
 Open a terminal and run the following command from the root of your application directory:
 
-<pre><xmp>npm i geostyler@7</xmp></pre>
+<pre><xmp>npm i geostyler@7.2.1</xmp></pre>
 
 Additionally, we have to install a few dependencies, which can be installed in the same manner:
 
@@ -22,6 +22,6 @@ In this workshop, we will use the SLD and OpenLayers Style Parser, as well as th
 
 Execute following command to install the parsers:
 
-<pre><xmp>npm i geostyler-sld-parser</xmp></pre>
-<pre><xmp>npm i geostyler-openlayers-parser</xmp></pre>
-<pre><xmp>npm i geostyler-wfs-parser</xmp></pre>
+<pre><xmp>npm i geostyler-sld-parser@3.0.1</xmp></pre>
+<pre><xmp>npm i geostyler-openlayers-parser@3.2.0</xmp></pre>
+<pre><xmp>npm i geostyler-wfs-parser@1.0.1</xmp></pre>
