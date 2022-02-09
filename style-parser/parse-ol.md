@@ -51,7 +51,7 @@ This can now be parsed via `readStyle` and `writeStyle`
 olParser.readStyle(olStyle)
     .then((geostylerStyle) => {
         // Run your actions with the read style here, e.g.
-        console.log(geostylerStyle);
+        console.log(geostylerStyle.output);
     });
 
 olParser.writeStyle(geostylerStyle)
