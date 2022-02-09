@@ -94,7 +94,7 @@ function App() {
   useEffect(() => {
     olParser.readStyle(olStyle)
       .then((geostylerStyle) => {
-        setStyle(geostylerStyle);
+        setStyle(geostylerStyle.output);
       });
 
     wfsParser.readData(wfsParams)

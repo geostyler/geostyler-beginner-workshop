@@ -58,7 +58,7 @@ write method of the `geostyler-sld-parser`.
 ```js
 olParser.readStyle(olStyle)
     .then((geostylerStyle) => {
-        return sldParser.writeStyle(geostylerStyle);
+        return sldParser.writeStyle(geostylerStyle.output);
     })
     .then((sld) => {
         // Run your actions with the converted style here
@@ -102,11 +102,11 @@ function App() {
   useEffect(() => {
     olParser.readStyle(originalOlStyle)
       .then((gsStyle) => {
-        setStyle(gsStyle);
-        return sldParser.writeStyle(gsStyle);
+        setStyle(gsStyle.output);
+        return sldParser.writeStyle(gsStyle.output);
       })
       .then((sldStyle) => {
-        setSld(sldStyle);
+        setSld(sldStyle.output);
       });
   }, []);
 
