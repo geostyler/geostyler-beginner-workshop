@@ -45,7 +45,7 @@ function App() {
 
     wfsParser.readData(wfsParams)
       .then((gsData) => {
-        setData(gsData.output);
+        setData(gsData);
       });
   }, []);
 
