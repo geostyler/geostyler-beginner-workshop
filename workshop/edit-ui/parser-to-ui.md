@@ -85,7 +85,7 @@ function App() {
   useEffect(() => {
     olParser.readStyle(olStyle)
       .then((geostylerStyle) => {
-        setStyle(geostylerStyle);
+        setStyle(geostylerStyle.output);
       });
   }, []);
 
@@ -144,7 +144,7 @@ function App() {
   useEffect(() => {
     olParser.readStyle(olStyle)
       .then((geostylerStyle) => {
-        setStyle(geostylerStyle);
+        setStyle(geostylerStyle.output);
       });
   }, []);
 

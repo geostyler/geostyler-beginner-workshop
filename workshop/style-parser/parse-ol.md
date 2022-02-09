@@ -57,7 +57,7 @@ olParser.readStyle(olStyle)
 olParser.writeStyle(geostylerStyle)
     .then((olStyle) => {
         // Run your actions with the written style here, e.g.
-        console.log(JSON.stringify(olStyle));
+        console.log(JSON.stringify(olStyle.output));
     });
 ```
 
@@ -95,7 +95,7 @@ function App() {
   useEffect(() =>  {
     olParser.readStyle(olStyle)
       .then((gsStyle) => {
-        setStyle(gsStyle);
+        setStyle(gsStyle.output));
       });
   }, [olStyle]);
 
@@ -106,7 +106,7 @@ function App() {
 
     olParser.writeStyle(style)
       .then((newOlStyle) => {
-        setOlStyle(newOlStyle);
+        setOlStyle(newOlStyle.output);
       });
   }, [style]);
 

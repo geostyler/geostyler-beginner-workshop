@@ -6,7 +6,7 @@
 Since we are using npm, the installation of GeoStyler is straightforward.
 Open a terminal and run the following command from the root of your application directory:
 
-<pre><xmp>npm i geostyler@7</xmp></pre>
+<pre><xmp>npm i geostyler@7.2.1</xmp></pre>
 
 Additionally, we have to install a few dependencies, which can be installed in the same manner:
 
