@@ -13,7 +13,7 @@
 <meta property="og:url" content="/" />
 <meta property="og:site_name" content="GeoStyler Beginner Workshop" />
 <script type="application/ld+json">
-{"@type":"WebSite","headline":"GeoStyler Beginner Workshop","url":"/","description":"Workshop on how to use GeoStyler from scratch. No prior knowledge needed.","name":"GeoStyler Beginner Workshop","@context":"https://schema.org"}</script>
+{"@type":"WebSite","url":"/","description":"Workshop on how to use GeoStyler from scratch. No prior knowledge needed.","headline":"GeoStyler Beginner Workshop","name":"GeoStyler Beginner Workshop","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="GeoStyler Beginner Workshop" /><link rel="stylesheet" href="./assets/main.css" />
 </head>
@@ -176,7 +176,7 @@ the content of <code class="highlighter-rouge">src/App.js</code> with following 
 <p>Since we are using npm, the installation of GeoStyler is straightforward.
 Open a terminal and run the following command from the root of your application directory:</p>
 
-<pre><xmp>npm i geostyler@7</xmp></pre>
+<pre><xmp>npm i geostyler@7.2.1</xmp></pre>
 
 <p>Additionally, we have to install a few dependencies, which can be installed in the same manner:</p>
 
@@ -192,9 +192,9 @@ In this workshop, we will use the SLD and OpenLayers Style Parser, as well as th
 
 <p>Execute following command to install the parsers:</p>
 
-<pre><xmp>npm i geostyler-sld-parser</xmp></pre>
-<pre><xmp>npm i geostyler-openlayers-parser</xmp></pre>
-<pre><xmp>npm i geostyler-wfs-parser</xmp></pre>
+<pre><xmp>npm i geostyler-sld-parser@3.0.1</xmp></pre>
+<pre><xmp>npm i geostyler-openlayers-parser@3.2.0</xmp></pre>
+<pre><xmp>npm i geostyler-wfs-parser@1.0.1</xmp></pre>
 
 <hr />
 
@@ -305,7 +305,7 @@ as React-state-variables and we can display their contents in the application.</
 
     <span class="nx">sldParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">sld</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">));</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">sld</span><span class="p">]);</span>
 
@@ -316,7 +316,7 @@ as React-state-variables and we can display their contents in the application.</
 
     <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sldStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setSld</span><span class="p">(</span><span class="nx">sldStyle</span><span class="p">);</span>
+        <span class="nx">setSld</span><span class="p">(</span><span class="nx">sldStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">style</span><span class="p">]);</span>
 
@@ -398,7 +398,7 @@ the <code class="highlighter-rouge">geostyler-openlayers-parser</code> and do no
 <span class="nx">olParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">olStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// Run your actions with the written style here, e.g.</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">));</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">));</span>
     <span class="p">});</span>
 </code></pre></div></div>
 
@@ -435,7 +435,7 @@ the <code class="highlighter-rouge">geostyler-openlayers-parser</code> and do no
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span>  <span class="p">{</span>
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">));</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">olStyle</span><span class="p">]);</span>
 
@@ -446,7 +446,7 @@ the <code class="highlighter-rouge">geostyler-openlayers-parser</code> and do no
 
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">style</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">newOlStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setOlStyle</span><span class="p">(</span><span class="nx">newOlStyle</span><span class="p">);</span>
+        <span class="nx">setOlStyle</span><span class="p">(</span><span class="nx">newOlStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[</span><span class="nx">style</span><span class="p">]);</span>
 
@@ -529,7 +529,7 @@ write method of the <code class="highlighter-rouge">geostyler-sld-parser</code>.
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
     <span class="p">})</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sld</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// Run your actions with the converted style here</span>
@@ -572,11 +572,11 @@ write method of the <code class="highlighter-rouge">geostyler-sld-parser</code>.
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">originalOlStyle</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">gsStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
-        <span class="k">return</span> <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">gsStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">})</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sldStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setSld</span><span class="p">(</span><span class="nx">sldStyle</span><span class="p">);</span>
+        <span class="nx">setSld</span><span class="p">(</span><span class="nx">sldStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[]);</span>
 
@@ -824,7 +824,7 @@ in a state-variable.</p>
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[]);</span>
 
@@ -882,7 +882,7 @@ in a state-variable.</p>
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
   <span class="p">},</span> <span class="p">[]);</span>
 
@@ -1011,7 +1011,7 @@ attributive styling in the UI.</p>
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
 
     <span class="nx">wfsParser</span><span class="p">.</span><span class="nx">readData</span><span class="p">(</span><span class="nx">wfsParams</span><span class="p">)</span>
@@ -1079,7 +1079,7 @@ via the <code class="highlighter-rouge">data</code> property.</p>
 <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="kd">const</span> <span class="nx">wfsParams</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://ows-demo.terrestris.de/geoserver/terrestris/ows</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">version</span><span class="p">:</span> <span class="dl">'</span><span class="s1">1.1.0</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">typeName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">terrestris:bundeslaender</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">srsName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">EPSG:4326</span><span class="dl">'</span>
@@ -1107,7 +1107,7 @@ via the <code class="highlighter-rouge">data</code> property.</p>
   <span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="nx">setStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
       <span class="p">});</span>
 
     <span class="nx">wfsParser</span><span class="p">.</span><span class="nx">readData</span><span class="p">(</span><span class="nx">wfsParams</span><span class="p">)</span>

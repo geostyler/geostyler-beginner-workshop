@@ -99,7 +99,7 @@ function App() {
 
     sldParser.readStyle(sld)
       .then((gsStyle) => {
-        setStyle(gsStyle);
+        setStyle(gsStyle.output));
       });
   }, [sld]);
 
@@ -110,7 +110,7 @@ function App() {
 
     sldParser.writeStyle(style)
       .then((sldStyle) => {
-        setSld(sldStyle);
+        setSld(sldStyle.output);
       });
   }, [style]);
 
