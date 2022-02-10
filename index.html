@@ -243,7 +243,7 @@ a SLD string as argument and returns a <a href="https://developer.mozilla.org/en
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sldParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">sld</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// Run your actions with the parsed style here, e.g.</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
     <span class="p">});</span>
 </code></pre></div></div>
 
@@ -253,7 +253,7 @@ a GeoStyler style object as argument and returns a Promise with the matching SLD
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sldParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sld</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// Run your actions with the written style here, e.g.</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
     <span class="p">});</span>
 </code></pre></div></div>
 
@@ -392,7 +392,7 @@ the <code class="highlighter-rouge">geostyler-openlayers-parser</code> and do no
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">olParser</span><span class="p">.</span><span class="nx">readStyle</span><span class="p">(</span><span class="nx">olStyle</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">geostylerStyle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// Run your actions with the read style here, e.g.</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
     <span class="p">});</span>
 
 <span class="nx">olParser</span><span class="p">.</span><span class="nx">writeStyle</span><span class="p">(</span><span class="nx">geostylerStyle</span><span class="p">)</span>
@@ -533,7 +533,7 @@ write method of the <code class="highlighter-rouge">geostyler-sld-parser</code>.
     <span class="p">})</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">sld</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
         <span class="c1">// Run your actions with the converted style here</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sld</span><span class="p">.</span><span class="nx">output</span><span class="p">);</span>
     <span class="p">});</span>
 </code></pre></div></div>
 
