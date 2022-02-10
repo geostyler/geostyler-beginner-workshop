@@ -34,7 +34,7 @@ a SLD string as argument and returns a [Promise](https://developer.mozilla.org/e
 sldParser.readStyle(sld)
     .then((geostylerStyle) => {
         // Run your actions with the parsed style here, e.g.
-        console.log(geostylerStyle);
+        console.log(geostylerStyle.output);
     });
 ```
 
@@ -45,7 +45,7 @@ a GeoStyler style object as argument and returns a Promise with the matching SLD
 sldParser.writeStyle(geostylerStyle)
     .then((sld) => {
         // Run your actions with the written style here, e.g.
-        console.log(sld);
+        console.log(sld.output);
     });
 ```
 

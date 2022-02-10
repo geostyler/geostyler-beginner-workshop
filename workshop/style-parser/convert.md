@@ -62,7 +62,7 @@ olParser.readStyle(olStyle)
     })
     .then((sld) => {
         // Run your actions with the converted style here
-        console.log(sld);
+        console.log(sld.output);
     });
 ```
 
