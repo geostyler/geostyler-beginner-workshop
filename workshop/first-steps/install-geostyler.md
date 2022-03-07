@@ -23,5 +23,5 @@ In this workshop, we will use the SLD and OpenLayers Style Parser, as well as th
 Execute following command to install the parsers:
 
 <pre><xmp>npm i geostyler-sld-parser@3.0.1</xmp></pre>
-<pre><xmp>npm i geostyler-openlayers-parser@3.2.0</xmp></pre>
+<pre><xmp>npm i geostyler-openlayers-parser@3.0.0</xmp></pre>
 <pre><xmp>npm i geostyler-wfs-parser@1.0.1</xmp></pre>
