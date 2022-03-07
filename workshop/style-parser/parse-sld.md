@@ -99,7 +99,7 @@ function App() {
 
     sldParser.readStyle(sld)
       .then((gsStyle) => {
-        setStyle(gsStyle.output));
+        setStyle(gsStyle.output);
       });
   }, [sld]);
 
