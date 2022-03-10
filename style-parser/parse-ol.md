@@ -95,7 +95,7 @@ function App() {
   useEffect(() =>  {
     olParser.readStyle(olStyle)
       .then((gsStyle) => {
-        setStyle(gsStyle.output));
+        setStyle(gsStyle.output);
       });
   }, [olStyle]);
 
