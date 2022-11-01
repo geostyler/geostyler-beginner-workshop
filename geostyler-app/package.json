@@ -9,7 +9,7 @@
     "antd": "^4.16.1",
     "geostyler": "^7.2.1",
     "geostyler-openlayers-parser": "^3.0.1",
-    "geostyler-sld-parser": "^3.2.0",
+    "geostyler-sld-parser": "^3.2.2",
     "geostyler-wfs-parser": "^1.0.1",
     "ol": "^6.5.0",
     "react": "^16.13.1",
