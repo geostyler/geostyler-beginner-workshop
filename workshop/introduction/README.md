@@ -9,7 +9,7 @@ We will be using the node package manager ([npm](https://www.npmjs.com/)) for th
 Furthermore, we will use the JavaScript standard [EcmaScript 6](https://en.wikipedia.org/wiki/ECMAScript) as programming language when developing.
 We therefore suggest to do so as well, when using GeoStyler.
 
-Since GeoStyler is a React-based component library, it is crucial to take a look at [React](https://reactjs.org/).
+Since GeoStyler is a React-based component library, it is crucial to take a look at [React](https://react.dev/).
 
 # GeoStyler Architecture
 

@@ -10,7 +10,7 @@ In order to parse SLD, we need two things. The `geostyler-sld-parser` and a SLD 
 We already installed the `geostyler-sld-parser` via
 
 ```bash
-npm i geostyler-sld-parser
+npm i geostyler-sld-parser@4.1.1
 ```
 
 in a previous chapter. So now, we just have to import it into our application.

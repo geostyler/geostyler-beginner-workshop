@@ -10,6 +10,7 @@ In this workshop, we will create a basic application that allows users to style 
 
 The final application will look like this:
 
+<!-- TODO replace gif with new one -->
 [![Final application](./images/geostyler-workshop.gif)](./images/geostyler-workshop.gif)
 
 ## Overview
@@ -29,7 +30,7 @@ The following instructions and exercises require some already installed programs
 Please make sure that the following programs are installed:
 
 - A usable text editor, e.g. [VSCode](https://code.visualstudio.com/).
-- [NodeJS](https://nodejs.org/en/) in version 12.
+- [NodeJS](https://nodejs.org/en/) in version 16.
 
 ## Authors
 

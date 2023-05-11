@@ -8,7 +8,7 @@ the `geostyler-openlayers-parser` and do not use an SLD string, but rather an Op
 The installation of the `geostyler-openlayers-parser` was already done in a previous chapter via
 
 ```bash
-npm i geostyler-openlayers-parser
+npm i geostyler-openlayers-parser@4.1.1
 ```
 
 Next, we have to import the parser
